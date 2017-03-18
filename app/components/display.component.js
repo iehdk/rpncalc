@@ -4,11 +4,12 @@ class Display extends React.Component {
   render () {
     return (
       <div className='display'>
-        <h1>Display!</h1>
+        <form>
+          <input type='text' value={this.props.value} onChange={this.handleChange} />
+        </form>
       </div>
     )
   }
-
 }
 
 export default Display
