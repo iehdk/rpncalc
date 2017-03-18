@@ -8,7 +8,6 @@ class Help extends React.Component {
       </div>
     )
   }
-
 }
 
 export default Help
