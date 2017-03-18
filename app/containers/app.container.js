@@ -3,7 +3,7 @@ import Display from '../components/display.component'
 import Header from '../components/header.component'
 import Help from '../components/help.component'
 import Keypad from '../components/keypad.component'
-import Settings from '../components/settings.component'
+import Menu from '../components/menu.component'
 import Stack from '../components/stack.component'
 
 class AppContainer extends React.Component {
@@ -12,14 +12,20 @@ class AppContainer extends React.Component {
   // }
 
   render () {
+    let _rows = '4'
+    let _cols = '30'
+
     return (
       <div className='rpncalc'>
-        <Display />
         <Header />
+        <Display
+          cols={_cols} />
         <Help />
         <Keypad />
-        <Settings />
-        <Stack />
+        <Menu />
+        <Stack
+          rows={_rows}
+          cols={_cols} />
       </div>
     )
   }
