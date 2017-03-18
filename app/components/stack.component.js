@@ -4,11 +4,13 @@ class Stack extends React.Component {
   render () {
     return (
       <div className='stack'>
-        <h1>Stack!!!</h1>
+        <textarea readOnly
+          rows={this.props.rows}
+          cols={this.props.cols}
+          value={this.props.value} />
       </div>
     )
   }
-
 }
 
 export default Stack
