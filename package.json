@@ -1,0 +1,33 @@
+{
+  "name": "rpncalc",
+  "version": "0.0.1",
+  "description": "Reverse Polish notation calculator",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js",
+    "watch": "watchify app/app.js -t babelify -o public/js/bundle.js --debug --verbose"
+  },
+  "author": "Martin Asser Hansen",
+  "email": "mail@maasha.dk",
+  "license": "GPL-2.0",
+  "repository": "https://github.com/maasha/rpncalc",
+  "dependencies": {
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "babelify": "^7.2.0",
+    "classnames": "^2.2.3",
+    "electron-prebuilt": "^1.4.13",
+    "electron-reload": "^1.1.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  }
+}
