@@ -5,7 +5,11 @@ class Display extends React.Component {
     return (
       <div className='display'>
         <form>
-          <input type='text' value={this.props.value} onChange={this.handleChange} />
+          <input
+            type='text'
+            size={this.props.cols}
+            value={this.props.value}
+            onChange={this.handleChange} />
         </form>
       </div>
     )
