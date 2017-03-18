@@ -12,20 +12,31 @@ class AppContainer extends React.Component {
   // }
 
   render () {
-    let _rows = '4'
-    let _cols = '30'
+    const _rows = '4'
+    const _cols = '30'
+    const _modalStyles = {
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+      }
+    }
 
     return (
       <div className='rpncalc'>
         <Header />
-        <Display
-          cols={_cols} />
-        <Help />
-        <Keypad />
-        <Menu />
         <Stack
           rows={_rows}
           cols={_cols} />
+        <Display
+          cols={_cols} />
+        <Help
+          style={_modalStyles} />
+        <Keypad />
+        <Menu />
       </div>
     )
   }
