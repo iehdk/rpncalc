@@ -7,9 +7,24 @@ import Menu from '../components/menu.component'
 import Stack from '../components/stack.component'
 
 class AppContainer extends React.Component {
-  // constructor (props) {
-  //   super(props)
-  // }
+  constructor () {
+    super()
+
+    this.state = {
+      displayValue: 'tyt',
+      stack: Array(4)
+    }
+  }
+
+  handleOnClick (event, value) {
+    alert("Pressed " + event.target.value)
+    // this.setState({displayValue: 'fisk'})
+  }
+
+  handleOnSubmit (event) {
+    alert("Submitted " + this.state.displayValue)
+    event.preventDefault()
+  }
 
   render () {
     const _rows = '4'
@@ -32,10 +47,13 @@ class AppContainer extends React.Component {
           rows={_rows}
           cols={_cols} />
         <Display
-          cols={_cols} />
+          cols={_cols}
+          value={this.displayValue}
+          handleOnSubmit={this.handleOnSubmit.bind(this)} />
         <Help
           style={_modalStyles} />
-        <Keypad />
+        <Keypad
+          handleOnClick={this.handleOnClick.bind(this)} />
         <Menu />
       </div>
     )

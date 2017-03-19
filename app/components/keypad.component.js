@@ -1,19 +1,7 @@
 import React from 'react'
 
-function Key (props) {
-  return (
-    <button className='square' onClick={() => props.onClick()}>
-      {props.value}
-    </button>
-  )
-}
-
 class Keypad extends React.Component {
   renderKey (key) {
-    return <Key value={key} onClick={() => this.props.onClick(key)} />
-  }
-
-  render () {
     const _keys = {
       ac: 'AC',
       c: 'C',
@@ -37,35 +25,43 @@ class Keypad extends React.Component {
     }
 
     return (
+      <button className='key' value={key} onClick={this.props.handleOnClick}>
+        {_keys[key]}
+      </button>
+    )
+  }
+
+  render () {
+    return (
       <div className='keypad'>
         <div className='keypad-row'>
-          {this.renderKey(_keys.ac)}
-          {this.renderKey(_keys.c)}
-          {this.renderKey(_keys.pm)}
-          {this.renderKey(_keys.div)}
+          {this.renderKey('ac')}
+          {this.renderKey('c')}
+          {this.renderKey('pm')}
+          {this.renderKey('div')}
         </div>
         <div className='keypad-row'>
-          {this.renderKey(_keys.key7)}
-          {this.renderKey(_keys.key8)}
-          {this.renderKey(_keys.key9)}
-          {this.renderKey(_keys.mut)}
+          {this.renderKey('key7')}
+          {this.renderKey('key8')}
+          {this.renderKey('key9')}
+          {this.renderKey('mut')}
         </div>
         <div className='keypad-row'>
-          {this.renderKey(_keys.key4)}
-          {this.renderKey(_keys.key5)}
-          {this.renderKey(_keys.key6)}
-          {this.renderKey(_keys.sub)}
+          {this.renderKey('key4')}
+          {this.renderKey('key5')}
+          {this.renderKey('key6')}
+          {this.renderKey('sub')}
         </div>
         <div className='keypad-row'>
-          {this.renderKey(_keys.key1)}
-          {this.renderKey(_keys.key2)}
-          {this.renderKey(_keys.key3)}
-          {this.renderKey(_keys.add)}
+          {this.renderKey('key1')}
+          {this.renderKey('key2')}
+          {this.renderKey('key3')}
+          {this.renderKey('add')}
         </div>
         <div className='keypad-row'>
-          {this.renderKey(_keys.key0)}
-          {this.renderKey(_keys.dot)}
-          {this.renderKey(_keys.ret)}
+          {this.renderKey('key0')}
+          {this.renderKey('dot')}
+          {this.renderKey('ret')}
         </div>
       </div>
     )
