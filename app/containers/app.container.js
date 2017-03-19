@@ -11,7 +11,7 @@ class AppContainer extends React.Component {
     super()
 
     this.state = {
-      displayValue: null,
+      displayValue: '',
       stack: Array(4)
     }
   }
@@ -21,11 +21,11 @@ class AppContainer extends React.Component {
   }
 
   handleOnClick (event) {
-    alert("Pressed " + event.target.value)
+    this.setState({displayValue: this.state.displayValue + event.target.value})
   }
 
   handleOnSubmit (event) {
-    alert("Submitted " + this.state.displayValue)
+    alert('Submitted ' + this.state.displayValue)
     event.preventDefault()
   }
 
@@ -51,7 +51,7 @@ class AppContainer extends React.Component {
           cols={_cols} />
         <Display
           cols={_cols}
-          value={this.displayValue}
+          displayValue={this.state.displayValue}
           handleOnChange={this.handleOnChange.bind(this)}
           handleOnSubmit={this.handleOnSubmit.bind(this)} />
         <Help
