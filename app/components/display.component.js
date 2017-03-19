@@ -8,7 +8,8 @@ class Display extends React.Component {
           <input
             type='text'
             size={this.props.cols}
-            value={this.props.value} />
+            onChange={this.props.handleOnChange}
+            value={this.props.displayValue} />
         </form>
       </div>
     )
