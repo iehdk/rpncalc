@@ -14,6 +14,28 @@ class AppContainer extends React.Component {
       displayValue: '',
       stack: Array(4)
     }
+
+    this.state.keys = {
+      ac: 'AC',
+      c: 'C',
+      pm: '\u00B1',
+      div: '/',
+      mut: '*',
+      sub: '-',
+      add: '+',
+      dot: '.',
+      ret: '\u21B5',
+      key0: '0',
+      key1: '1',
+      key2: '2',
+      key3: '3',
+      key4: '4',
+      key5: '5',
+      key6: '6',
+      key7: '7',
+      key8: '8',
+      key9: '9'
+    }
   }
 
   handleOnChange (event) {
@@ -21,7 +43,23 @@ class AppContainer extends React.Component {
   }
 
   handleOnClick (event) {
-    this.setState({displayValue: this.state.displayValue + event.target.value})
+    let value = event.target.value
+    let key = this.state.keys[value]
+
+    switch (value) {
+      case 'ac':
+        alert('ac')
+        break
+      case 'c':
+        alert('c')
+        break
+      case 'ret':
+        alert('ret')
+        break
+      default:
+        this.setState({displayValue: this.state.displayValue + key})
+        break
+    }
   }
 
   handleOnSubmit (event) {
@@ -57,6 +95,7 @@ class AppContainer extends React.Component {
         <Help
           style={_modalStyles} />
         <Keypad
+          keys={this.state.keys}
           handleOnClick={this.handleOnClick.bind(this)} />
         <Menu />
       </div>
