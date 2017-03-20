@@ -1,9 +1,9 @@
 import React from 'react'
 
-class Stack extends React.Component {
+class Display extends React.Component {
   render () {
     return (
-      <div className='stack'>
+      <div className='display'>
         <textarea readOnly
           rows={this.props.rows}
           cols={this.props.cols}
@@ -13,4 +13,4 @@ class Stack extends React.Component {
   }
 }
 
-export default Stack
+export default Display

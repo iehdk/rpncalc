@@ -3,7 +3,7 @@ import React from 'react'
 class Prompt extends React.Component {
   render () {
     return (
-      <div className='Prompt'>
+      <div className='prompt'>
         <form onSubmit={this.props.handleOnSubmit}>
           <input
             type='text'
