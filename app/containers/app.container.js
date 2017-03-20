@@ -11,8 +11,10 @@ class AppContainer extends React.Component {
     super()
 
     this.state = {
+      prefixSize: 0,
+      suffixSize: 0,
       promptValue: '',
-      stack: Array(4)
+      stack: []
     }
 
     this.state.keys = {
@@ -54,7 +56,8 @@ class AppContainer extends React.Component {
         alert('c')
         break
       case 'ret':
-        alert('ret')
+        this.addToStack()
+        this.setState({promptValue: ''})
         break
       default:
         this.setState({promptValue: this.state.promptValue + key})
@@ -65,6 +68,25 @@ class AppContainer extends React.Component {
   handleOnSubmit (event) {
     alert('Submitted ' + this.state.promptValue)
     event.preventDefault()
+  }
+
+  addToStack () {
+    let newStack = this.state.stack.slice()
+    const value = this.state.promptValue
+    const parts = value.split('.')
+    const prefixSize = parts[0].length
+    const suffixSize = parts[1] ? parts[1].length : 0
+
+    if (prefixSize > this.state.prefixSize) {
+      this.setState({prefixSize: prefixSize})
+    }
+
+    if (suffixSize > this.state.suffixSize) {
+      this.setState({suffixSize: suffixSize})
+    }
+
+    newStack.push(value)
+    this.setState({stack: newStack})
   }
 
   render () {
@@ -86,7 +108,10 @@ class AppContainer extends React.Component {
         <Header />
         <Display
           rows={_rows}
-          cols={_cols} />
+          cols={_cols}
+          prefixSize={this.state.prefixSize}
+          suffixSize={this.state.suffixSize}
+          stack={this.state.stack} />
         <Prompt
           cols={_cols}
           promptValue={this.state.promptValue}
