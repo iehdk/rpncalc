@@ -1,17 +1,17 @@
 import React from 'react'
-import Display from '../components/display.component'
 import Header from '../components/header.component'
 import Help from '../components/help.component'
-import Keypad from '../components/keypad.component'
 import Menu from '../components/menu.component'
-import Stack from '../components/stack.component'
+import Prompt from '../components/Prompt.component'
+import Display from '../components/display.component'
+import Keypad from '../components/keypad.component'
 
 class AppContainer extends React.Component {
   constructor () {
     super()
 
     this.state = {
-      displayValue: '',
+      promptValue: '',
       stack: Array(4)
     }
 
@@ -39,7 +39,7 @@ class AppContainer extends React.Component {
   }
 
   handleOnChange (event) {
-    this.setState({displayValue: event.target.value})
+    this.setState({promptValue: event.target.value})
   }
 
   handleOnClick (event) {
@@ -57,13 +57,13 @@ class AppContainer extends React.Component {
         alert('ret')
         break
       default:
-        this.setState({displayValue: this.state.displayValue + key})
+        this.setState({promptValue: this.state.promptValue + key})
         break
     }
   }
 
   handleOnSubmit (event) {
-    alert('Submitted ' + this.state.displayValue)
+    alert('Submitted ' + this.state.promptValue)
     event.preventDefault()
   }
 
@@ -84,12 +84,12 @@ class AppContainer extends React.Component {
     return (
       <div className='rpncalc'>
         <Header />
-        <Stack
+        <Display
           rows={_rows}
           cols={_cols} />
-        <Display
+        <Prompt
           cols={_cols}
-          displayValue={this.state.displayValue}
+          promptValue={this.state.promptValue}
           handleOnChange={this.handleOnChange.bind(this)}
           handleOnSubmit={this.handleOnSubmit.bind(this)} />
         <Help
