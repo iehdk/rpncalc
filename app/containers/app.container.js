@@ -83,6 +83,10 @@ class AppContainer extends React.Component {
         this.calcDivide()
         this.setState({promptValue: ''})
         break
+      case 'sum':
+        this.calcSum()
+        this.setState({promptValue: ''})
+        break
       case 'enter':
         this.addToStack()
         this.setState({promptValue: ''})
@@ -148,6 +152,20 @@ class AppContainer extends React.Component {
       newStack.push(1 / value)
       this.setState({stack: newStack})
     }
+  }
+
+  calcSum () {
+    if (this.state.stack.length < 1) {
+      return
+    }
+
+    let sum = 0
+
+    for (let i = 0; i < this.state.stack.length; ++i) {
+      sum += this.state.stack[i]
+    }
+
+    this.setState({stack: [sum]})
   }
 
   calcAdd () {
