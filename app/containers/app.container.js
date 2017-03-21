@@ -18,15 +18,21 @@ class AppContainer extends React.Component {
     }
 
     this.state.keys = {
-      ac: 'AC',
-      c: 'C',
-      pm: '\u00B1',
-      div: '/',
-      mut: '*',
-      sub: '-',
+      undo: 'UNDO',
+      clear: 'CLEAR',
+      del: 'DEL',
+      pop: 'POP',
+      swap: 'SWAP',
+      reciprocal: '\u215fx',
+      divide: '/',
+      exp: 'x\u02b8',
+      mutiply: '*',
+      substact: '-',
       add: '+',
       dot: '.',
-      ret: '\u21B5',
+      root: '\u221a',
+      sum: '\u03a3',
+      enter: 'ENTER',
       key0: '0',
       key1: '1',
       key2: '2',
@@ -55,7 +61,7 @@ class AppContainer extends React.Component {
       case 'c':
         alert('c')
         break
-      case 'ret':
+      case 'enter':
         this.addToStack()
         this.setState({promptValue: ''})
         break
