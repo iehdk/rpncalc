@@ -99,6 +99,10 @@ class AppContainer extends React.Component {
         this.setState({stack: []})
         this.setState({promptValue: ''})
         break
+      case 'pop':
+        this.popStack()
+        this.setState({promptValue: ''})
+        break
       case 'enter':
         this.addToStack()
         this.setState({promptValue: ''})
@@ -113,6 +117,15 @@ class AppContainer extends React.Component {
     let promptValue = this.state.promptValue
     promptValue = promptValue.substring(0, promptValue.length - 1)
     return (promptValue)
+  }
+
+  popStack () {
+    let newStack = this.state.stack.slice()
+    const value = newStack.pop()
+
+    if (value) {
+      this.setState({stack: newStack})
+    }
   }
 
   addToStack () {
