@@ -14,7 +14,8 @@ class AppContainer extends React.Component {
       prefixSize: 0,
       suffixSize: 0,
       promptValue: '',
-      stack: []
+      stack: [],
+      history: []
     }
 
     this.state.keys = {
@@ -63,49 +64,70 @@ class AppContainer extends React.Component {
       case 'root':
         this.calcRoot()
         this.setState({promptValue: ''})
+        this.addToHistory()
         break
       case 'exp':
         this.calcExp()
         this.setState({promptValue: ''})
+        this.addToHistory()
         break
       case 'reciprocal':
         this.calcReciprocal()
         this.setState({promptValue: ''})
+        this.addToHistory()
         break
       case 'add':
         this.calcAdd()
         this.setState({promptValue: ''})
+        this.addToHistory()
         break
       case 'substact':
         this.calcSubstract()
         this.setState({promptValue: ''})
+        this.addToHistory()
         break
       case 'multiply':
         this.calcMultiply()
         this.setState({promptValue: ''})
+        this.addToHistory()
         break
       case 'divide':
         this.calcDivide()
         this.setState({promptValue: ''})
+        this.addToHistory()
         break
       case 'sum':
         this.calcSum()
         this.setState({promptValue: ''})
+        this.addToHistory()
         break
       case 'del':
         this.setState({promptValue: this.chopPromptValue()})
+        this.addToHistory()
         break
       case 'clear':
         this.setState({stack: []})
+        this.setState({promptValue: ''})
+        this.addToHistory()
+        break
+      case 'undo':
+        this.undoHistory()
         this.setState({promptValue: ''})
         break
       case 'pop':
         this.popStack()
         this.setState({promptValue: ''})
+        this.addToHistory()
+        break
+      case 'swap':
+        this.swapStack()
+        this.setState({promptValue: ''})
+        this.addToHistory()
         break
       case 'enter':
         this.addToStack()
         this.setState({promptValue: ''})
+        this.addToHistory()
         break
       default:
         this.setState({promptValue: this.state.promptValue + key})
@@ -128,6 +150,20 @@ class AppContainer extends React.Component {
     }
   }
 
+  swapStack () {
+    if (this.state.stack.length < 2) {
+      return
+    }
+
+    let newStack = this.state.stack.slice()
+    const value2 = newStack.pop()
+    const value1 = newStack.pop()
+
+    newStack.push(value2)
+    newStack.push(value1)
+    this.setState({stack: newStack})
+  }
+
   addToStack () {
     let newStack = this.state.stack.slice()
     const value = parseFloat(this.state.promptValue)
@@ -145,6 +181,24 @@ class AppContainer extends React.Component {
 
     newStack.push(value)
     this.setState({stack: newStack})
+  }
+
+  addToHistory () {
+    let newStack = this.state.stack.slice()
+    let newHistory = this.state.history.slice()
+    newHistory.push(newStack)
+    this.setState({history: newHistory})
+  }
+
+  undoHistory () {
+    if (this.state.history.length < 1) {
+      return
+    }
+
+    let newHistory = this.state.history.slice()
+    let newStack = newHistory.pop()
+    this.setState({stack: newStack})
+    this.setState({history: newHistory})
   }
 
   calcRoot () {
