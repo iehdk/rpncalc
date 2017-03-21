@@ -1,7 +1,5 @@
 import React from 'react'
 import Header from '../components/header.component'
-import Help from '../components/help.component'
-import Menu from '../components/menu.component'
 import Prompt from '../components/Prompt.component'
 import Display from '../components/display.component'
 import Keypad from '../components/keypad.component'
@@ -165,6 +163,10 @@ class AppContainer extends React.Component {
   }
 
   addToStack () {
+    if (this.state.promptValue === '') {
+      return
+    }
+
     let newStack = this.state.stack.slice()
     const value = parseFloat(this.state.promptValue)
     const parts = value.toString().split('.')
@@ -191,7 +193,7 @@ class AppContainer extends React.Component {
   }
 
   undoHistory () {
-    if (this.state.history.length < 1) {
+    if (this.state.history.length === 0) {
       return
     }
 
@@ -303,16 +305,6 @@ class AppContainer extends React.Component {
   render () {
     const _rows = '4'
     const _cols = '30'
-    const _modalStyles = {
-      content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
-      }
-    }
 
     return (
       <div className='rpncalc'>
@@ -328,12 +320,9 @@ class AppContainer extends React.Component {
           promptValue={this.state.promptValue}
           handleOnChange={this.handleOnChange.bind(this)}
           handleOnSubmit={this.handleOnSubmit.bind(this)} />
-        <Help
-          style={_modalStyles} />
         <Keypad
           keys={this.state.keys}
           handleOnClick={this.handleOnClick.bind(this)} />
-        <Menu />
       </div>
     )
   }
