@@ -59,6 +59,10 @@ class AppContainer extends React.Component {
         this.calcRoot()
         this.setState({promptValue: ''})
         break
+      case 'exp':
+        this.calcExp()
+        this.setState({promptValue: ''})
+        break
       case 'add':
         this.calcAdd()
         this.setState({promptValue: ''})
@@ -117,6 +121,19 @@ class AppContainer extends React.Component {
       newStack.push(Math.sqrt(value))
       this.setState({stack: newStack})
     }
+  }
+
+  calcExp () {
+    if (this.state.stack.length < 2) {
+      return
+    }
+
+    let newStack = this.state.stack.slice()
+    const value2 = newStack.pop()
+    const value1 = newStack.pop()
+
+    newStack.push(value1 ** value2)
+    this.setState({stack: newStack})
   }
 
   calcAdd () {
