@@ -13,7 +13,7 @@ class Display extends React.Component {
     for (let i = 0; i < length; ++i) {
       const index = length - i
       const value = stack[i]
-      const parts = value.split('.')
+      const parts = value.toString().split('.')
       const valueSize = parts[0].length
       const indexSize = index.toString().length
       const indexPadding = this.getPadding(maxIndexSize - indexSize + 1)

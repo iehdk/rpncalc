@@ -59,6 +59,10 @@ class AppContainer extends React.Component {
         this.calcRoot()
         this.setState({promptValue: ''})
         break
+      case 'add':
+        this.calcAdd()
+        this.setState({promptValue: ''})
+        break
       case 'enter':
         this.addToStack()
         this.setState({promptValue: ''})
@@ -76,8 +80,8 @@ class AppContainer extends React.Component {
 
   addToStack () {
     let newStack = this.state.stack.slice()
-    const value = this.state.promptValue
-    const parts = value.split('.')
+    const value = parseFloat(this.state.promptValue)
+    const parts = value.toString().split('.')
     const prefixSize = parts[0].length
     const suffixSize = parts[1] ? parts[1].length : 0
 
@@ -98,9 +102,22 @@ class AppContainer extends React.Component {
     const value = newStack.pop()
 
     if (value) {
-      newStack.push(Math.sqrt(value).toString())
+      newStack.push(Math.sqrt(value))
       this.setState({stack: newStack})
     }
+  }
+
+  calcAdd () {
+    if (this.state.stack.length < 2) {
+      return
+    }
+
+    let newStack = this.state.stack.slice()
+    const value1 = newStack.pop()
+    const value2 = newStack.pop()
+
+    newStack.push(value1 + value2)
+    this.setState({stack: newStack})
   }
 
   render () {
