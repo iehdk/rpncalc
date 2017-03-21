@@ -95,6 +95,10 @@ class AppContainer extends React.Component {
       case 'del':
         this.setState({promptValue: this.chopPromptValue()})
         break
+      case 'clear':
+        this.setState({stack: []})
+        this.setState({promptValue: ''})
+        break
       case 'enter':
         this.addToStack()
         this.setState({promptValue: ''})
