@@ -63,6 +63,10 @@ class AppContainer extends React.Component {
         this.calcExp()
         this.setState({promptValue: ''})
         break
+      case 'reciprocal':
+        this.calcReciprocal()
+        this.setState({promptValue: ''})
+        break
       case 'add':
         this.calcAdd()
         this.setState({promptValue: ''})
@@ -134,6 +138,16 @@ class AppContainer extends React.Component {
 
     newStack.push(value1 ** value2)
     this.setState({stack: newStack})
+  }
+
+  calcReciprocal () {
+    let newStack = this.state.stack.slice()
+    const value = newStack.pop()
+
+    if (value) {
+      newStack.push(1 / value)
+      this.setState({stack: newStack})
+    }
   }
 
   calcAdd () {
