@@ -50,6 +50,11 @@ class AppContainer extends React.Component {
     this.setState({promptValue: event.target.value})
   }
 
+  handleOnSubmit (event) {
+    alert('Submitted ' + this.state.promptValue)
+    event.preventDefault()
+  }
+
   handleOnClick (event) {
     let value = event.target.value
     let key = this.state.keys[value]
@@ -87,6 +92,9 @@ class AppContainer extends React.Component {
         this.calcSum()
         this.setState({promptValue: ''})
         break
+      case 'del':
+        this.setState({promptValue: this.chopPromptValue()})
+        break
       case 'enter':
         this.addToStack()
         this.setState({promptValue: ''})
@@ -97,9 +105,10 @@ class AppContainer extends React.Component {
     }
   }
 
-  handleOnSubmit (event) {
-    alert('Submitted ' + this.state.promptValue)
-    event.preventDefault()
+  chopPromptValue () {
+    let promptValue = this.state.promptValue
+    promptValue = promptValue.substring(0, promptValue.length - 1)
+    return (promptValue)
   }
 
   addToStack () {
