@@ -55,11 +55,9 @@ class AppContainer extends React.Component {
     let key = this.state.keys[value]
 
     switch (value) {
-      case 'ac':
-        alert('ac')
-        break
-      case 'c':
-        alert('c')
+      case 'root':
+        this.calcRoot()
+        this.setState({promptValue: ''})
         break
       case 'enter':
         this.addToStack()
@@ -93,6 +91,16 @@ class AppContainer extends React.Component {
 
     newStack.push(value)
     this.setState({stack: newStack})
+  }
+
+  calcRoot () {
+    let newStack = this.state.stack.slice()
+    const value = newStack.pop()
+
+    if (value) {
+      newStack.push(Math.sqrt(value).toString())
+      this.setState({stack: newStack})
+    }
   }
 
   render () {
