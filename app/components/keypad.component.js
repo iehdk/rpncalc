@@ -24,7 +24,7 @@ class Keypad extends React.Component {
           {this.renderKey('key7', 1)}
           {this.renderKey('key8', 1)}
           {this.renderKey('key9', 1)}
-          {this.renderKey('mutiply', 1)}
+          {this.renderKey('multiply', 1)}
           {this.renderKey('clear', 2)}
         </div>
         <div className='keypad-row'>

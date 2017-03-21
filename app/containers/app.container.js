@@ -26,7 +26,7 @@ class AppContainer extends React.Component {
       reciprocal: '\u215fx',
       divide: '/',
       exp: 'x\u02b8',
-      mutiply: '*',
+      multiply: '*',
       substact: '-',
       add: '+',
       dot: '.',
@@ -61,6 +61,18 @@ class AppContainer extends React.Component {
         break
       case 'add':
         this.calcAdd()
+        this.setState({promptValue: ''})
+        break
+      case 'substact':
+        this.calcSubstract()
+        this.setState({promptValue: ''})
+        break
+      case 'multiply':
+        this.calcMultiply()
+        this.setState({promptValue: ''})
+        break
+      case 'divide':
+        this.calcDivide()
         this.setState({promptValue: ''})
         break
       case 'enter':
@@ -113,10 +125,49 @@ class AppContainer extends React.Component {
     }
 
     let newStack = this.state.stack.slice()
-    const value1 = newStack.pop()
     const value2 = newStack.pop()
+    const value1 = newStack.pop()
 
     newStack.push(value1 + value2)
+    this.setState({stack: newStack})
+  }
+
+  calcSubstract () {
+    if (this.state.stack.length < 2) {
+      return
+    }
+
+    let newStack = this.state.stack.slice()
+    const value2 = newStack.pop()
+    const value1 = newStack.pop()
+
+    newStack.push(value1 - value2)
+    this.setState({stack: newStack})
+  }
+
+  calcMultiply () {
+    if (this.state.stack.length < 2) {
+      return
+    }
+
+    let newStack = this.state.stack.slice()
+    const value2 = newStack.pop()
+    const value1 = newStack.pop()
+
+    newStack.push(value1 * value2)
+    this.setState({stack: newStack})
+  }
+
+  calcDivide () {
+    if (this.state.stack.length < 2) {
+      return
+    }
+
+    let newStack = this.state.stack.slice()
+    const value2 = newStack.pop()
+    const value1 = newStack.pop()
+
+    newStack.push(value1 / value2)
     this.setState({stack: newStack})
   }
 
