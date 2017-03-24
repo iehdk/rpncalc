@@ -50,7 +50,8 @@ class AppContainer extends React.Component {
   }
 
   handleOnSubmit (event) {
-    alert('Submitted ' + this.state.promptValue)
+    this.addToStack()
+    this.setState({promptValue: ''})
     event.preventDefault()
   }
 
