@@ -1,6 +1,7 @@
 import React from 'react'
-import Modal from 'react-modal'
-import {slide as Menu} from 'react-burger-menu'
+import Help from '../components/help.component'
+
+// import {slide as Menu} from 'react-burger-menu'
 
 class Header extends React.Component {
   constructor () {
@@ -8,12 +9,12 @@ class Header extends React.Component {
 
     this.state = {
       menuIsOpen: false,
-      modalIsOpen: false
+      helpIsOpen: false
     }
 
     this.openMenu = this.openMenu.bind(this)
     this.openHelp = this.openHelp.bind(this)
-    this.closeModal = this.closeModal.bind(this)
+    this.closeHelp = this.closeHelp.bind(this)
   }
 
   openMenu () {
@@ -21,33 +22,27 @@ class Header extends React.Component {
   }
 
   openHelp () {
-    this.setState({modalIsOpen: true})
+    this.setState({helpIsOpen: true})
   }
 
-  closeModal () {
-    this.setState({modalIsOpen: false})
+  closeHelp () {
+    this.setState({helpIsOpen: false})
   }
 
   render () {
     return (
       <div className='header'>
         <button className='button button-menu' type='button' onClick={this.openMenu}>{'\u2630'}</button>
-        <button className='button button-help 'type='button' onClick={this.openHelp}>?</button>
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          onRequestClose={this.closeModal}
-          contentLabel='Help Modal'
-        >
-          <button type='button' onClick={this.closeModal}>X</button>
-          <h2 ref='subtitle'>Help</h2>
-          <p>Help text here</p>
-        </Modal>
         {// <Menu
         //   isOpen={this.state.menuIsOpen}>
         //   <a id='home' className='menu-item' href='/'>Home</a>
         //   <a onClick={this.showSettings} className='menu-item--small' href=''>Settings</a>
         // </Menu>
       }
+        <Help
+          helpIsOpen={this.state.helpIsOpen}
+          openHelp={this.openHelp.bind(this)}
+          closeHelp={this.closeHelp.bind(this)} />
       </div>
     )
   }
