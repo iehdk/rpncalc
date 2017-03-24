@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../components/header.component'
+import Header from '../containers/header.container'
 import Prompt from '../components/Prompt.component'
 import Display from '../components/display.component'
 import Keypad from '../components/keypad.component'

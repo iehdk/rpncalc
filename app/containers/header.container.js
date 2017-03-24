@@ -1,7 +1,6 @@
 import React from 'react'
 import Help from '../components/help.component'
-
-// import {slide as Menu} from 'react-burger-menu'
+import Menu from '../components/menu.component'
 
 class Header extends React.Component {
   constructor () {
@@ -32,13 +31,9 @@ class Header extends React.Component {
   render () {
     return (
       <div className='header'>
-        <button className='button button-menu' type='button' onClick={this.openMenu}>{'\u2630'}</button>
-        {// <Menu
-        //   isOpen={this.state.menuIsOpen}>
-        //   <a id='home' className='menu-item' href='/'>Home</a>
-        //   <a onClick={this.showSettings} className='menu-item--small' href=''>Settings</a>
-        // </Menu>
-      }
+        <Menu
+          menuIsOpen={this.state.menuIsOpen}
+          openMenu={this.openMenu.bind(this)} />
         <Help
           helpIsOpen={this.state.helpIsOpen}
           openHelp={this.openHelp.bind(this)}
