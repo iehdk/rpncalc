@@ -52,6 +52,7 @@ class AppContainer extends React.Component {
   handleOnSubmit (event) {
     this.addToStack()
     this.setState({promptValue: ''})
+    this.addToHistory()
     event.preventDefault()
   }
 
