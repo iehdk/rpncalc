@@ -292,20 +292,20 @@ class AppContainer extends React.Component {
   }
 
   render () {
-    const _rows = '4'
-    const _cols = '30'
+    const rows = '4'
+    const cols = '30'
 
     return (
       <div className='rpncalc'>
         <Header />
         <Display
-          rows={_rows}
-          cols={_cols}
+          rows={rows}
+          cols={cols}
           prefixSize={this.state.prefixSize}
           suffixSize={this.state.suffixSize}
           stack={this.state.stack} />
         <Prompt
-          cols={_cols}
+          cols={cols}
           promptValue={this.state.promptValue}
           handleOnChange={this.handleOnChange.bind(this)}
           handleOnSubmit={this.handleOnSubmit.bind(this)} />
