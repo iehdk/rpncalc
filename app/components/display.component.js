@@ -1,6 +1,21 @@
 import React from 'react'
 
 class Display extends React.Component {
+  getMaxPrefixSize (stack) {
+    let maxPrefixSize = 0
+
+    stack.map(function (value) {
+      const parts = value.toString().split('.')
+      const prefixSize = parts[0].length
+
+      if (prefixSize > maxPrefixSize) {
+        maxPrefixSize = prefixSize
+      }
+    })
+
+    return (maxPrefixSize)
+  }
+
   getPadding (size) {
     return (Array(size + 1).join(' '))
   }
@@ -9,6 +24,7 @@ class Display extends React.Component {
     let rows = []
     const length = stack.length
     const maxIndexSize = length.toString().length
+    const maxPrefixSize = this.getMaxPrefixSize(stack)
 
     for (let i = 0; i < length; ++i) {
       const index = length - i
@@ -17,7 +33,7 @@ class Display extends React.Component {
       const valueSize = parts[0].length
       const indexSize = index.toString().length
       const indexPadding = this.getPadding(maxIndexSize - indexSize + 1)
-      const valuePadding = this.getPadding(this.props.prefixSize - valueSize + 1)
+      const valuePadding = this.getPadding(maxPrefixSize - valueSize + 1)
 
       rows.push(indexPadding + index + ': ' + valuePadding + value)
     }

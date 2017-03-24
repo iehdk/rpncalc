@@ -9,8 +9,6 @@ class AppContainer extends React.Component {
     super()
 
     this.state = {
-      prefixSize: 0,
-      suffixSize: 0,
       promptValue: '',
       stack: [],
       history: []
@@ -171,17 +169,6 @@ class AppContainer extends React.Component {
 
     let newStack = this.state.stack.slice()
     const value = parseFloat(this.state.promptValue)
-    const parts = value.toString().split('.')
-    const prefixSize = parts[0].length
-    const suffixSize = parts[1] ? parts[1].length : 0
-
-    if (prefixSize > this.state.prefixSize) {
-      this.setState({prefixSize: prefixSize})
-    }
-
-    if (suffixSize > this.state.suffixSize) {
-      this.setState({suffixSize: suffixSize})
-    }
 
     newStack.push(value)
     this.setState({stack: newStack})
