@@ -5,7 +5,7 @@ class Help extends React.Component {
   render () {
     return (
       <div className='help'>
-        <button className='button button-help 'type='button' onClick={this.props.openHelp}>?</button>
+        <button className='button button-help' type='button' onClick={this.props.openHelp}>?</button>
         <Modal
           isOpen={this.props.helpIsOpen}
           onRequestClose={this.props.closeHelp}

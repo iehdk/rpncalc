@@ -10,10 +10,6 @@ class Header extends React.Component {
       menuIsOpen: false,
       helpIsOpen: false
     }
-
-    this.openMenu = this.openMenu.bind(this)
-    this.openHelp = this.openHelp.bind(this)
-    this.closeHelp = this.closeHelp.bind(this)
   }
 
   openMenu () {
@@ -31,9 +27,11 @@ class Header extends React.Component {
   render () {
     return (
       <div className='header'>
-        <Menu
-          menuIsOpen={this.state.menuIsOpen}
-          openMenu={this.openMenu.bind(this)} />
+        {
+        // <Menu
+        //   menuIsOpen={this.state.menuIsOpen}
+        //   openMenu={this.openMenu.bind(this)} />
+        }
         <Help
           helpIsOpen={this.state.helpIsOpen}
           openHelp={this.openHelp.bind(this)}
