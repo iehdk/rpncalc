@@ -3,13 +3,18 @@ import {slide as Burger} from 'react-burger-menu'
 
 class Menu extends React.Component {
   render () {
+    const iconBurger = '\u2630'
+
     return (
       <div className='menu'>
-        <button className='button button-menu' type='button' onClick={this.props.openMenu}>{'\u2630'}</button>
+        <button className='button button-menu' type='button' onClick={this.props.openMenu}>{iconBurger}</button>
         <Burger
           isOpen={this.props.menuIsOpen}>
-          <a id='home' className='menu-item' href='/'>Home</a>
-          <a onClick={this.props.showSettings} className='menu-item--small' href=''>Settings</a>
+          <ul>
+            <li>setting 1</li>
+            <li>setting 2</li>
+            <li>setting ...</li>
+          </ul>
         </Burger>
       </div>
     )

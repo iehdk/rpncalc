@@ -1,6 +1,12 @@
 import React from 'react'
+import ReactDom from 'react-dom'
 
 class Display extends React.Component {
+  componentDidUpdate () {
+    const node = document.getElementById('display')
+    node.scrollTop = node.scrollHeight
+  }
+
   getMaxPrefixSize (stack) {
     let maxPrefixSize = 0
 
@@ -45,6 +51,7 @@ class Display extends React.Component {
     return (
       <div className='display'>
         <textarea readOnly
+          id='display'
           rows={this.props.rows}
           cols={this.props.cols}
           value={this.renderStack(this.props.stack)} />
