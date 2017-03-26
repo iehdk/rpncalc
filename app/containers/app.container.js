@@ -23,7 +23,7 @@ class AppContainer extends React.Component {
       reciprocal: '\u215fx',
       divide: '/',
       exp: 'x\u02b8',
-      multiply: '*',
+      multiply: 'x',
       substact: '-',
       add: '+',
       dot: '.',
@@ -80,8 +80,12 @@ class AppContainer extends React.Component {
         this.addToHistory()
         break
       case 'substact':
-        this.calcSubstract()
-        this.setState({promptValue: ''})
+        if (this.state.promptValue) {
+          this.setState({promptValue: '-' + this.state.promptValue})
+        } else {
+          this.calcSubstract()
+          this.setState({promptValue: ''})
+        }
         this.addToHistory()
         break
       case 'multiply':
