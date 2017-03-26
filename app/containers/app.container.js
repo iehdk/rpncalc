@@ -179,6 +179,10 @@ class AppContainer extends React.Component {
   }
 
   addToHistory () {
+    if (this.state.stack.length === 0) {
+      return
+    }
+
     let newStack = this.state.stack.slice()
     let newHistory = this.state.history.slice()
     newHistory.push(newStack)
