@@ -4,6 +4,34 @@ import Prompt from '../components/Prompt.component'
 import Display from '../components/display.component'
 import Keypad from '../components/keypad.component'
 
+const KEYS = {
+  undo: 'UNDO',
+  clear: 'CLEAR',
+  del: 'DEL',
+  pop: 'POP',
+  swap: 'SWAP',
+  reciprocal: '1/x',
+  divide: '/',
+  exp: 'x^y',
+  multiply: 'x',
+  substact: '-',
+  add: '+',
+  dot: '.',
+  root: '\u221a',
+  sum: '\u03a3',
+  enter: 'ENTER',
+  key0: '0',
+  key1: '1',
+  key2: '2',
+  key3: '3',
+  key4: '4',
+  key5: '5',
+  key6: '6',
+  key7: '7',
+  key8: '8',
+  key9: '9'
+}
+
 class AppContainer extends React.Component {
   constructor () {
     super()
@@ -11,35 +39,8 @@ class AppContainer extends React.Component {
     this.state = {
       promptValue: '',
       stack: [],
-      history: []
-    }
-
-    this.state.keys = {
-      undo: 'UNDO',
-      clear: 'CLEAR',
-      del: 'DEL',
-      pop: 'POP',
-      swap: 'SWAP',
-      reciprocal: '1/x',
-      divide: '/',
-      exp: 'x^y',
-      multiply: 'x',
-      substact: '-',
-      add: '+',
-      dot: '.',
-      root: '\u221a',
-      sum: '\u03a3',
-      enter: 'ENTER',
-      key0: '0',
-      key1: '1',
-      key2: '2',
-      key3: '3',
-      key4: '4',
-      key5: '5',
-      key6: '6',
-      key7: '7',
-      key8: '8',
-      key9: '9'
+      history: [],
+      keys: KEYS
     }
   }
 
