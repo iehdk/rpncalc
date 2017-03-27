@@ -4,6 +4,8 @@ import Prompt from '../components/Prompt.component'
 import Display from '../components/display.component'
 import Keypad from '../components/keypad.component'
 
+const ROWS = '4'
+const COLS = '30'
 const KEYS = {
   undo: 'UNDO',
   clear: 'CLEAR',
@@ -301,20 +303,17 @@ class AppContainer extends React.Component {
   }
 
   render () {
-    const rows = '4'
-    const cols = '30'
-
     return (
       <div className='rpncalc'>
         <Header />
         <Display
-          rows={rows}
-          cols={cols}
+          rows={ROWS}
+          cols={COLS}
           prefixSize={this.state.prefixSize}
           suffixSize={this.state.suffixSize}
           stack={this.state.stack} />
         <Prompt
-          cols={cols}
+          cols={COLS}
           promptValue={this.state.promptValue}
           handleOnChange={this.handleOnChange.bind(this)}
           handleOnSubmit={this.handleOnSubmit.bind(this)} />
