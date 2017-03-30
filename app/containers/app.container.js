@@ -170,15 +170,40 @@ class AppContainer extends React.Component {
   }
 
   addToStack () {
-    if (this.state.promptValue === '') {
-      return
+    switch (this.state.promptValue) {
+      case '':
+        break
+      case '+':
+        this.calcAdd()
+        this.setState({promptValue: ''})
+        this.addToHistory()
+        break
+      case '-':
+        this.calcSubstract()
+        this.setState({promptValue: ''})
+        this.addToHistory()
+        break
+      case 'x':
+        this.calcMultiply()
+        this.setState({promptValue: ''})
+        this.addToHistory()
+        break
+      case '/':
+        this.calcDivide()
+        this.setState({promptValue: ''})
+        this.addToHistory()
+        break
+      default:
+        let newStack = this.state.stack.slice()
+        const value = parseFloat(this.state.promptValue)
+
+        if (value) {
+          newStack.push(value)
+          this.setState({stack: newStack})
+        }
+
+        break
     }
-
-    let newStack = this.state.stack.slice()
-    const value = parseFloat(this.state.promptValue)
-
-    newStack.push(value)
-    this.setState({stack: newStack})
   }
 
   addToHistory () {
