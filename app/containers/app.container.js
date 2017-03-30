@@ -197,7 +197,7 @@ class AppContainer extends React.Component {
         let newStack = this.state.stack.slice()
         const value = parseFloat(this.state.promptValue)
 
-        if (value) {
+        if (value || this.state.promptValue === '0') {
           newStack.push(value)
           this.setState({stack: newStack})
         }
