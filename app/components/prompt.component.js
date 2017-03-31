@@ -2,9 +2,13 @@ import React from 'react'
 
 class Prompt extends React.Component {
   componentDidMount () {
-    alert('here')
-    let node = document.getElementById('prompt')
-    node.focus()
+    alert('mount')
+    this.refs.prompt.focus()
+  }
+
+  componentDidUpdate () {
+    alert('update')
+    this.refs.prompt.focus()
   }
 
   render () {
@@ -12,7 +16,7 @@ class Prompt extends React.Component {
       <div className='prompt'>
         <form onSubmit={this.props.handleOnSubmit}>
           <input
-            id='prompt'
+            ref={(input) => { this.prompt = input }}
             type='text'
             size={this.props.cols}
             onChange={this.props.handleOnChange}

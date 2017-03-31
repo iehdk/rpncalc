@@ -60,27 +60,24 @@ class AppContainer extends React.Component {
   handleOnClick (event) {
     let value = event.target.value
     let key = this.state.keys[value]
+    let skipHistory = false
 
     switch (value) {
       case 'root':
         this.calcRoot()
         this.setState({promptValue: ''})
-        this.addToHistory()
         break
       case 'exp':
         this.calcExp()
         this.setState({promptValue: ''})
-        this.addToHistory()
         break
       case 'reciprocal':
         this.calcReciprocal()
         this.setState({promptValue: ''})
-        this.addToHistory()
         break
       case 'add':
         this.calcAdd()
         this.setState({promptValue: ''})
-        this.addToHistory()
         break
       case 'substact':
         if (this.state.promptValue) {
@@ -89,31 +86,25 @@ class AppContainer extends React.Component {
           this.calcSubstract()
           this.setState({promptValue: ''})
         }
-        this.addToHistory()
         break
       case 'multiply':
         this.calcMultiply()
         this.setState({promptValue: ''})
-        this.addToHistory()
         break
       case 'divide':
         this.calcDivide()
         this.setState({promptValue: ''})
-        this.addToHistory()
         break
       case 'sum':
         this.calcSum()
         this.setState({promptValue: ''})
-        this.addToHistory()
         break
       case 'del':
         this.setState({promptValue: this.chopPromptValue()})
-        this.addToHistory()
         break
       case 'clear':
         this.setState({stack: []})
         this.setState({promptValue: ''})
-        this.addToHistory()
         break
       case 'undo':
         this.undoHistory()
@@ -122,21 +113,23 @@ class AppContainer extends React.Component {
       case 'pop':
         this.popStack()
         this.setState({promptValue: ''})
-        this.addToHistory()
         break
       case 'swap':
         this.swapStack()
         this.setState({promptValue: ''})
-        this.addToHistory()
         break
       case 'enter':
         this.addToStack()
         this.setState({promptValue: ''})
-        this.addToHistory()
         break
       default:
         this.setState({promptValue: this.state.promptValue + key})
+        skipHistory = true
         break
+    }
+
+    if (!skipHistory) {
+      this.addToHistory()
     }
   }
 
