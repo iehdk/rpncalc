@@ -1,5 +1,6 @@
 {
   "name": "rpncalc",
+  "productName": "rpncalc app",
   "version": "0.0.1",
   "description": "Reverse Polish notation calculator",
   "main": "main.js",
@@ -31,6 +32,8 @@
   "devDependencies": {
     "babel-preset-es2015": "^6.24.0",
     "electron": "^1.6.2",
+    "electron-installer-dmg": "^0.2.1",
+    "electron-packager": "^8.6.0",
     "electron-react-devtools": "^0.4.0",
     "electron-winstaller": "^2.5.2"
   },
