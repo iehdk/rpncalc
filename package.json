@@ -1,6 +1,6 @@
 {
   "name": "rpncalc",
-  "productName": "rpncalc app",
+  "productName": "rpncalc",
   "version": "0.0.1",
   "description": "Reverse Polish notation calculator",
   "main": "main.js",
@@ -10,7 +10,7 @@
     "package-mac": "electron-packager . --overwrite --asar=true --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
     "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds",
     "package-linux": "electron-packager . --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds",
-    "create-installer-mac": "electron-installer-dmg ./release-builds/rpncalc-app-darwin-x64/rpncalc app.app electron-tutorial-app --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns",
+    "create-installer-mac": "electron-installer-dmg ./release-builds/rpncalc-app-darwin-x64/rpncalc.app --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns",
     "create-installer-win": "node installers/windows/createinstaller.js"
   },
   "author": "Martin Asser Hansen",
