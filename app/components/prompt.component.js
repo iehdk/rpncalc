@@ -7,7 +7,7 @@ class Prompt extends React.Component {
         <form onSubmit={this.props.handleOnSubmit}>
           <input
             id='prompt'
-            ref={this.props.ref}
+            ref={this.props.inputRef}
             type='text'
             size={this.props.cols}
             onChange={this.props.handleOnChange}

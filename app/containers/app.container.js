@@ -43,13 +43,12 @@ class AppContainer extends React.Component {
       stack: [],
       history: [],
       keys: KEYS,
-      ref: (input) => { this.textInput = input }
     }
   }
 
   componentDidMount () {
     console.log(this.state)
-    this.state.ref.textInput.focus()
+    this.inputElement.focus()
   }
 
   handleOnChange (event) {
@@ -342,7 +341,7 @@ class AppContainer extends React.Component {
           stack={this.state.stack} />
         <Prompt
           cols={COLS}
-          ref={this.state.ref}
+          inputRef={(inputElement) => { this.inputElement = inputElement }}
           promptValue={this.state.promptValue}
           handleOnChange={this.handleOnChange.bind(this)}
           handleOnSubmit={this.handleOnSubmit.bind(this)} />
