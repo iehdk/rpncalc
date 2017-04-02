@@ -42,8 +42,14 @@ class AppContainer extends React.Component {
       promptValue: '',
       stack: [],
       history: [],
-      keys: KEYS
+      keys: KEYS,
+      ref: (input) => { this.textInput = input }
     }
+  }
+
+  componentDidMount () {
+    console.log(this.state)
+    this.state.ref.textInput.focus()
   }
 
   handleOnChange (event) {
@@ -163,28 +169,26 @@ class AppContainer extends React.Component {
   }
 
   addToStack () {
+    let skipHistory = false
+
     switch (this.state.promptValue) {
       case '':
         break
       case '+':
         this.calcAdd()
         this.setState({promptValue: ''})
-        this.addToHistory()
         break
       case '-':
         this.calcSubstract()
         this.setState({promptValue: ''})
-        this.addToHistory()
         break
       case 'x':
         this.calcMultiply()
         this.setState({promptValue: ''})
-        this.addToHistory()
         break
       case '/':
         this.calcDivide()
         this.setState({promptValue: ''})
-        this.addToHistory()
         break
       default:
         let newStack = this.state.stack.slice()
@@ -193,9 +197,15 @@ class AppContainer extends React.Component {
         if (value || this.state.promptValue === '0') {
           newStack.push(value)
           this.setState({stack: newStack})
+        } else {
+          skipHistory = true
         }
 
         break
+    }
+
+    if (!skipHistory) {
+      this.addToHistory()
     }
   }
 
@@ -332,6 +342,7 @@ class AppContainer extends React.Component {
           stack={this.state.stack} />
         <Prompt
           cols={COLS}
+          ref={this.state.ref}
           promptValue={this.state.promptValue}
           handleOnChange={this.handleOnChange.bind(this)}
           handleOnSubmit={this.handleOnSubmit.bind(this)} />

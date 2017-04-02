@@ -2,9 +2,9 @@ import React from 'react'
 
 class Keypad extends React.Component {
   renderKey (key, width) {
-    const _className = 'key key-width-' + width
+    const className = 'key key-width-' + width
     return (
-      <button className={_className} type='button' value={key} onClick={this.props.handleOnClick}>
+      <button className={className} type='button' value={key} onClick={this.props.handleOnClick}>
         {this.props.keys[key]}
       </button>
     )
