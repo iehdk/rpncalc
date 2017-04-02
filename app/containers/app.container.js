@@ -42,12 +42,15 @@ class AppContainer extends React.Component {
       promptValue: '',
       stack: [],
       history: [],
-      keys: KEYS,
+      keys: KEYS
     }
   }
 
   componentDidMount () {
-    console.log(this.state)
+    this.inputElement.focus()
+  }
+
+  componentDidUpdate () {
     this.inputElement.focus()
   }
 
