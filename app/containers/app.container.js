@@ -89,7 +89,9 @@ class AppContainer extends React.Component {
         break
       case 'substact':
         if (this.state.promptValue) {
-          this.setState({promptValue: '-' + this.state.promptValue})
+          if (this.state.promptValue.charAt(0) !== '-') {
+            this.setState({promptValue: '-' + this.state.promptValue})
+          }
         } else {
           this.calcSubstract()
           this.setState({promptValue: ''})
