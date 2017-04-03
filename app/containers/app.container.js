@@ -239,7 +239,7 @@ class AppContainer extends React.Component {
     let newStack = this.state.stack.slice()
     const value = newStack.pop()
 
-    if (value) {
+    if (value && value.charAt(0) !== '-') {
       newStack.push(Math.sqrt(value))
       this.setState({stack: newStack})
     }
