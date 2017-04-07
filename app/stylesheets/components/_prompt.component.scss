@@ -1,0 +1,13 @@
+.prompt {
+  input {
+    font-family: 'Courier New';
+    font-size: 1em;
+    font-weight: bold;
+    height: 20px;
+    width: 360px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
