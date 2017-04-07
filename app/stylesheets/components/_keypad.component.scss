@@ -1,0 +1,19 @@
+.keypad {
+  .key {
+    font-size: 1em;
+    font-weight: bold;
+    height: 30px;
+  }
+
+  .key-width-1 {
+    width: 60px;
+  }
+
+  .key-width-2 {
+    width: 120px;
+  }
+
+  .key-width-6 {
+    width: 360px;
+  }
+}
