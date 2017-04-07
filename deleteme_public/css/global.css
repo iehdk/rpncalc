@@ -1,0 +1,54 @@
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+.button-help {
+  float: right;
+}
+
+.key {
+  height: 30px;
+  font-weight: bold;
+  font-size: 1.0em;
+}
+
+.key-width-1 {
+  width: 60px;
+}
+
+.key-width-2 {
+  width: 120px;
+}
+
+.key-width-6 {
+  width: 360px;
+}
+
+.display textarea {
+  height: 120px;
+  width: 360px;
+  font-family: "Courier New";
+  resize: none;
+  font-weight: bold;
+  font-size: 1em;
+  overflow-y:scroll
+}
+
+.prompt input {
+  height: 20px;
+  width: 360px;
+  font-family: "Courier New";
+  font-weight: bold;
+  font-size: 1em;
+}
+
+input:focus{
+    outline: none;
+}
