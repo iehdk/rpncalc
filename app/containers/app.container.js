@@ -336,7 +336,7 @@ class AppContainer extends React.Component {
 
   render () {
     return (
-      <div className='rpncalc'>
+      <div className='app'>
         <Header />
         <Display
           rows={ROWS}

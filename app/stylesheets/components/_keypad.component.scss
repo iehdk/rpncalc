@@ -1,19 +1,26 @@
+$key-background-color: #404040;
+$key-font-color: #fff;
+$key-height: 30px;
+$key-width: 60px;
+
 .keypad {
   .key {
+    background-color: $key-background-color;
+    color: $key-font-color;
     font-size: 1em;
     font-weight: bold;
-    height: 30px;
+    height: $key-height;
   }
 
   .key-width-1 {
-    width: 60px;
+    width: $key-width;
   }
 
   .key-width-2 {
-    width: 120px;
+    width: $key-width * 2;
   }
 
   .key-width-6 {
-    width: 360px;
+    width: $key-width * 6;
   }
 }
