@@ -1,5 +1,6 @@
 import React from 'react'
 import Help from '../components/help.component'
+import Exit from '../components/exit.component'
 
 class Header extends React.Component {
   constructor () {
@@ -18,9 +19,17 @@ class Header extends React.Component {
     this.setState({helpIsOpen: false})
   }
 
+  exitApp () {
+    alert('exit you want?')
+    // const remote = require('electron').remote
+    // remote.app.quit()
+  }
+
   render () {
     return (
       <div className='header'>
+        <Exit
+          exitApp={this.exitApp.bind(this)} />
         <Help
           helpIsOpen={this.state.helpIsOpen}
           openHelp={this.openHelp.bind(this)}
