@@ -1,4 +1,5 @@
 import React from 'react'
+import KeyExp from '../components/key-exp.component'
 
 class Keypad extends React.Component {
   renderKey (key, width) {
@@ -15,7 +16,7 @@ class Keypad extends React.Component {
       <div className='keypad'>
         <div className='keypad-row'>
           {this.renderKey('root', 1)}
-          {this.renderKey('exp', 1)}
+          <KeyExp handleOnClick={this.props.handleOnClick} />
           {this.renderKey('reciprocal', 1)}
           {this.renderKey('divide', 1)}
           {this.renderKey('del', 2)}

@@ -66,8 +66,8 @@ class AppContainer extends React.Component {
   }
 
   handleOnClick (event) {
-    let value = event.target.value
-    let key = this.state.keys[value]
+    let value = event.currentTarget.value
+    let key
     let skipHistory = false
 
     switch (value) {
@@ -133,6 +133,7 @@ class AppContainer extends React.Component {
         this.setState({promptValue: ''})
         break
       default:
+        key = this.state.keys[value]
         this.setState({promptValue: this.state.promptValue + key})
         skipHistory = true
         break
