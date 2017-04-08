@@ -186,7 +186,7 @@ class AppContainer extends React.Component {
         this.calcSubstract()
         this.setState({promptValue: ''})
         break
-      case 'x':
+      case '*':
         this.calcMultiply()
         this.setState({promptValue: ''})
         break
