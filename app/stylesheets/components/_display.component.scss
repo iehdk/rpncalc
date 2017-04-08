@@ -3,8 +3,10 @@ $display-background-color: #e6e6e6;
 .display {
   textarea {
     background-color: $display-background-color;
+    box-sizing: border-box;
     font-family: 'Courier New';
     font-size: 1em;
+    margin-bottom: -5px;
     font-weight: bold;
     height: 120px;
     overflow-y: scroll;

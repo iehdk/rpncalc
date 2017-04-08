@@ -1,12 +1,12 @@
-$key-background-color: #404040;
-$key-font-color: #fff;
+$btn-background-color: #404040;
+$btn-font-color: #fff;
 $key-height: 30px;
 $key-width: 60px;
 
 .keypad {
   .key {
-    background-color: $key-background-color;
-    color: $key-font-color;
+    background-color: $btn-background-color;
+    color: $btn-font-color;
     font-size: 1em;
     font-weight: bold;
     height: $key-height;
