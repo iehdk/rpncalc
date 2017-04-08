@@ -3,3 +3,4 @@ public/js/bundle.js
 npm-debug.log
 release-builds/
 .DS_Store
+.tags*
