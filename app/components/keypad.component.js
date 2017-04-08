@@ -1,13 +1,11 @@
 import React from 'react'
+import Key from '../components/key.component'
 import KeyExp from '../components/key-exp.component'
 
 class Keypad extends React.Component {
-  renderKey (key, width) {
-    const className = 'key key-width-' + width
+  renderKey (value, width) {
     return (
-      <button className={className} type='button' value={key} onClick={this.props.handleOnClick}>
-        {this.props.keys[key]}
-      </button>
+      <Key value={value} label={this.props.keys[value]} width={width} handleOnClick={this.props.handleOnClick} />
     )
   }
 
@@ -32,7 +30,7 @@ class Keypad extends React.Component {
           {this.renderKey('key4', 1)}
           {this.renderKey('key5', 1)}
           {this.renderKey('key6', 1)}
-          {this.renderKey('substact', 1)}
+          {this.renderKey('subtract', 1)}
           {this.renderKey('undo', 2)}
         </div>
         <div className='keypad-row'>

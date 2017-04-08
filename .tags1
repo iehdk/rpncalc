@@ -4,5 +4,5 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-.key	/Users/maasha/install/src/rpncalc/app/stylesheets/components/_key-exp.component.scss	/^.key {$/;"	function	line:1
-sup	/Users/maasha/install/src/rpncalc/app/stylesheets/components/_key-exp.component.scss	/^  sup {$/;"	function	line:2
+renderKey	/Users/maasha/install/src/rpncalc/app/components/keypad.component.js	/^  renderKey (value, width) {$/;"	function	line:6
+render	/Users/maasha/install/src/rpncalc/app/components/keypad.component.js	/^  render () {$/;"	function	line:12

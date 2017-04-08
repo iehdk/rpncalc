@@ -16,7 +16,7 @@ const KEYS = {
   divide: '/',
   exp: 'x^y',
   multiply: 'x',
-  substact: '-',
+  subtract: '-',
   add: '+',
   dot: '.',
   root: '\u221a',
@@ -87,7 +87,7 @@ class AppContainer extends React.Component {
         this.calcAdd()
         this.setState({promptValue: ''})
         break
-      case 'substact':
+      case 'subtract':
         if (this.state.promptValue) {
           if (this.state.promptValue.charAt(0) !== '-') {
             this.setState({promptValue: '-' + this.state.promptValue})
@@ -240,7 +240,7 @@ class AppContainer extends React.Component {
     let newStack = this.state.stack.slice()
     const value = newStack.pop()
 
-    if (value && value.charAt(0) !== '-') {
+    if (value && value > 0) {
       newStack.push(Math.sqrt(value))
       this.setState({stack: newStack})
     }
