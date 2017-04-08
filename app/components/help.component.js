@@ -8,10 +8,12 @@ class Help extends React.Component {
         <button className='button button-help' type='button' onClick={this.props.openHelp}>?</button>
         <Modal
           isOpen={this.props.helpIsOpen}
+          className='modal'
+          overlayClassName='overlay'
           onRequestClose={this.props.closeHelp}
           contentLabel='Help Modal'
         >
-          <button type='button' onClick={this.props.closeHelp}>X</button>
+          <button className='button button-close' type='button' onClick={this.props.closeHelp}>X</button>
           <h2 ref='subtitle'>Help</h2>
           <p>Reverse Polish notation (RPN) is a method for representing
              expressions in which the operator symbol is placed after the
@@ -22,7 +24,7 @@ class Help extends React.Component {
             and 3, namely 5: 2 3 +.
           </p>
           <p>
-            Read more about RPN <a href='http://www.calculator.org/rpn.aspx'>here</a>.
+            Copyright 2017 Martin Asser Hansen mail@maasha.dk
           </p>
         </Modal>
       </div>
