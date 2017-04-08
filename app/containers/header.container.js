@@ -1,19 +1,13 @@
 import React from 'react'
 import Help from '../components/help.component'
-import Menu from '../components/menu.component'
 
 class Header extends React.Component {
   constructor () {
     super()
 
     this.state = {
-      menuIsOpen: false,
       helpIsOpen: false
     }
-  }
-
-  openMenu () {
-    this.setState({menuIsOpen: true})
   }
 
   openHelp () {
@@ -27,11 +21,6 @@ class Header extends React.Component {
   render () {
     return (
       <div className='header'>
-        {
-        // <Menu
-        //   menuIsOpen={this.state.menuIsOpen}
-        //   openMenu={this.openMenu.bind(this)} />
-        }
         <Help
           helpIsOpen={this.state.helpIsOpen}
           openHelp={this.openHelp.bind(this)}
