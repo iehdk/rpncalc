@@ -30,3 +30,10 @@ calcDivide	/Users/maasha/install/src/rpncalc/app/containers/app.container.js	/^ 
 render	/Users/maasha/install/src/rpncalc/app/containers/app.container.js	/^  render () {$/;"	function	line:338
 renderKey	/Users/maasha/install/src/rpncalc/app/components/keypad.component.js	/^  renderKey (value, width) {$/;"	function	line:6
 render	/Users/maasha/install/src/rpncalc/app/components/keypad.component.js	/^  render () {$/;"	function	line:12
+key-height	/Users/maasha/install/src/rpncalc/app/stylesheets/components/_key.component.scss	/^$key-height: 30px;$/;"	function	line:1
+key-width	/Users/maasha/install/src/rpncalc/app/stylesheets/components/_key.component.scss	/^$key-width: 60px;$/;"	function	line:2
+.keypad	/Users/maasha/install/src/rpncalc/app/stylesheets/components/_key.component.scss	/^.keypad {$/;"	function	line:4
+.key	/Users/maasha/install/src/rpncalc/app/stylesheets/components/_key.component.scss	/^  .key {$/;"	function	line:5
+.key-width-1	/Users/maasha/install/src/rpncalc/app/stylesheets/components/_key.component.scss	/^  .key-width-1 {$/;"	function	line:13
+.key-width-2	/Users/maasha/install/src/rpncalc/app/stylesheets/components/_key.component.scss	/^  .key-width-2 {$/;"	function	line:17
+.key-width-6	/Users/maasha/install/src/rpncalc/app/stylesheets/components/_key.component.scss	/^  .key-width-6 {$/;"	function	line:21
