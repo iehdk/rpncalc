@@ -8,7 +8,9 @@ const config = {
     publicPath: 'http://localhost:8080/dist/'
   },
   devServer: {
-    contentBase: './dist',
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 8080,
     publicPath: 'http://localhost:8080/dist/'
   },
   module: {

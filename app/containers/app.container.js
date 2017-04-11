@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../containers/header.container'
-import Prompt from '../components/Prompt.component'
+import Prompt from '../components/prompt.component'
 import Display from '../components/display.component'
 import Keypad from '../components/keypad.component'
 
