@@ -1,7 +1,5 @@
 'use strict'
 
-require('electron-reload')(__dirname)
-
 // handle setupevents as quickly as possible
 const setupEvents = require('./installers/setupEvents')
 
