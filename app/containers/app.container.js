@@ -484,7 +484,7 @@ class AppContainer extends React.Component {
 
   /**
    * React.component's required render method.
-   * @return {JSX} Special React markup magic.
+   * @return {Object} JSX code that is transpiled to Javascript.
    */
   render () {
     return (
