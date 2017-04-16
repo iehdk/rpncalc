@@ -47,14 +47,11 @@ class AppContainer extends React.Component {
   }
 
   componentDidMount () {
-    const os = require('os')
-    console.log(os)
-    console.log(os.homedir())
-
     this.inputElement.focus()
   }
 
   componentDidUpdate () {
+    this.storeHistory()
     this.inputElement.focus()
   }
 
@@ -216,6 +213,30 @@ class AppContainer extends React.Component {
     if (!skipHistory) {
       this.addToHistory()
     }
+  }
+
+  historyFilePath () {
+    const os = require('os')
+    const path = require('path')
+    const homedir = os.homedir()
+    return path.join(homedir, '.rpncalc_history.json')
+  }
+
+  storeHistory () {
+    if (this.state.history.length === 0) {
+      return
+    }
+
+    const fs = require('fs')
+    const json = JSON.stringify(this.state.history, null, 2)
+
+    fs.writeFile(this.historyFilePath(), json, function (err) {
+      if (err) {
+        return console.log(err)
+      }
+
+      return true
+    })
   }
 
   addToHistory () {
