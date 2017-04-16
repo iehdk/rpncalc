@@ -38,10 +38,13 @@ class AppContainer extends React.Component {
   constructor () {
     super()
 
+    let history = this.retrieveHistory() || []
+    let stack = history[history.length - 1] || []
+
     this.state = {
       promptValue: '',
-      stack: [],
-      history: [],
+      stack: stack,
+      history: history,
       keys: KEYS
     }
   }
@@ -237,6 +240,19 @@ class AppContainer extends React.Component {
 
       return true
     })
+  }
+
+  retrieveHistory () {
+    const fs = require('fs')
+    const file = this.historyFilePath()
+
+    if (!fs.existsSync(file)) {
+      return
+    }
+
+    const data = fs.readFileSync(file, 'utf8')
+
+    return JSON.parse(data)
   }
 
   addToHistory () {
