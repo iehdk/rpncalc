@@ -38,7 +38,8 @@ const config = {
         }]
       }
     ]
-  }
+  },
+  target: 'electron'
 }
 
 module.exports = config
