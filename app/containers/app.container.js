@@ -4,8 +4,23 @@ import Prompt from '../components/prompt.component'
 import Display from '../components/display.component'
 import Keypad from '../components/keypad.component'
 
+/**
+ * Number of rows in the textarea used in the Display component.
+ * @type {String}
+ */
 const ROWS = '4'
+
+/**
+ * Number of columns in the textarea used in the Display component and the input
+ * field used in the Prompt component.
+ * @type {String}
+ */
 const COLS = '30'
+
+/**
+ * Calculator keypad keys.
+ * @type {Object}
+ */
 const KEYS = {
   undo: 'UNDO',
   clear: 'CLEAR',
@@ -34,7 +49,15 @@ const KEYS = {
   key9: '9'
 }
 
+/**
+ * Main application container for the RPN calculator.
+ * @type {React.Component}
+ */
 class AppContainer extends React.Component {
+  /**
+   * Constructor for AppContainer.
+   * @return {React.Component} Main application container.
+   */
   constructor () {
     super()
 
@@ -49,19 +72,33 @@ class AppContainer extends React.Component {
     }
   }
 
+  /**
+   * React lifecycle method called when component is mounted.
+   */
   componentDidMount () {
     this.inputElement.focus()
   }
 
+  /**
+   * React lifecycle method called when component is updated.
+   */
   componentDidUpdate () {
     this.storeHistory()
     this.inputElement.focus()
   }
 
+  /**
+   * Event handler for OnChange events in the Prompt component.
+   * @param {Object} event Input field OnChange event.
+   */
   handleOnChange (event) {
     this.setState({promptValue: event.target.value})
   }
 
+  /**
+   * Event handler for OnSubmit events in the Prompt component.
+   * @param {Object} event Form submit event.
+   */
   handleOnSubmit (event) {
     this.addToStack()
     this.setState({promptValue: ''})
@@ -69,6 +106,10 @@ class AppContainer extends React.Component {
     event.preventDefault()
   }
 
+  /**
+   * Event handler for OnClick events in the Keypad component.
+   * @param {Object} event Button OnClick event.
+   */
   handleOnClick (event) {
     let value = event.currentTarget.value
     let key
@@ -148,12 +189,19 @@ class AppContainer extends React.Component {
     }
   }
 
+  /**
+   * Method that chops the promptValue, that is remove the last char.
+   * @return {String} Chopped promptValue
+   */
   chopPromptValue () {
     let promptValue = this.state.promptValue
     promptValue = promptValue.substring(0, promptValue.length - 1)
     return (promptValue)
   }
 
+  /**
+   * Remove the last value on the stack.
+   */
   popStack () {
     let newStack = this.state.stack.slice()
     const value = newStack.pop()
@@ -163,6 +211,9 @@ class AppContainer extends React.Component {
     }
   }
 
+  /**
+   * Swap the last two values on the stack.
+   */
   swapStack () {
     if (this.state.stack.length < 2) {
       return
@@ -177,6 +228,10 @@ class AppContainer extends React.Component {
     this.setState({stack: newStack})
   }
 
+  /**
+   * Add the promptValue to the stack unless it is an operator in which case
+   * the appropriate action is taken.
+   */
   addToStack () {
     let skipHistory = false
 
@@ -218,6 +273,10 @@ class AppContainer extends React.Component {
     }
   }
 
+  /**
+   * Method that returns the path to the history file.
+   * @return {String} Full path to the history file.
+   */
   historyFilePath () {
     const os = require('os')
     const path = require('path')
@@ -225,6 +284,10 @@ class AppContainer extends React.Component {
     return path.join(homedir, '.rpncalc_history.json')
   }
 
+  /**
+   * Store the history in JSON format to the history file.
+   * @return {Boolean} True on save success, else false.
+   */
   storeHistory () {
     if (this.state.history.length === 0) {
       return
@@ -242,6 +305,10 @@ class AppContainer extends React.Component {
     })
   }
 
+  /**
+   * Retreive the history from the history file.
+   * @return {Array} History array
+   */
   retrieveHistory () {
     const fs = require('fs')
     const file = this.historyFilePath()
@@ -255,6 +322,9 @@ class AppContainer extends React.Component {
     return JSON.parse(data)
   }
 
+  /**
+   * Add the current stack to the history if the stack is not empty.
+   */
   addToHistory () {
     if (this.state.stack.length === 0) {
       return
@@ -266,6 +336,10 @@ class AppContainer extends React.Component {
     this.setState({history: newHistory})
   }
 
+  /**
+   * Undo action by replacing the current stack with last one saved in the
+   * history.
+   */
   undoHistory () {
     if (this.state.history.length === 0) {
       return
@@ -277,6 +351,10 @@ class AppContainer extends React.Component {
     this.setState({history: newHistory})
   }
 
+  /**
+   * Calculate the square root of the last stack value which is replaced by the
+   * result.
+   */
   calcRoot () {
     let newStack = this.state.stack.slice()
     const value = newStack.pop()
@@ -287,6 +365,10 @@ class AppContainer extends React.Component {
     }
   }
 
+  /**
+   * Calculate the exponent x**y of using the two last stack values which are
+   * replaced by the result.
+   */
   calcExp () {
     if (this.state.stack.length < 2) {
       return
@@ -300,6 +382,10 @@ class AppContainer extends React.Component {
     this.setState({stack: newStack})
   }
 
+  /**
+   * Calculate the reciprocal value of using the last stack value which is
+   * replaced by the result.
+   */
   calcReciprocal () {
     let newStack = this.state.stack.slice()
     const value = newStack.pop()
@@ -310,6 +396,10 @@ class AppContainer extends React.Component {
     }
   }
 
+  /**
+   * Calculate the sum of all stack values which are replaced by the
+   * result.
+   */
   calcSum () {
     if (this.state.stack.length < 1) {
       return
@@ -324,6 +414,10 @@ class AppContainer extends React.Component {
     this.setState({stack: [sum]})
   }
 
+  /**
+   * Calculate the sum of the last two stack values which are replaced by the
+   * result.
+   */
   calcAdd () {
     if (this.state.stack.length < 2) {
       return
@@ -337,6 +431,10 @@ class AppContainer extends React.Component {
     this.setState({stack: newStack})
   }
 
+  /**
+   * Calculate the subtraction of the last two stack values which are replaced
+   * by the result.
+   */
   calcSubstract () {
     if (this.state.stack.length < 2) {
       return
@@ -350,6 +448,10 @@ class AppContainer extends React.Component {
     this.setState({stack: newStack})
   }
 
+  /**
+   * Calculate the multiplication of the last two stack values which are
+   * replaced by the result.
+   */
   calcMultiply () {
     if (this.state.stack.length < 2) {
       return
@@ -363,6 +465,10 @@ class AppContainer extends React.Component {
     this.setState({stack: newStack})
   }
 
+  /**
+   * Calculate the division of the last two stack values which are replaced by
+   * the result.
+   */
   calcDivide () {
     if (this.state.stack.length < 2) {
       return
@@ -376,6 +482,10 @@ class AppContainer extends React.Component {
     this.setState({stack: newStack})
   }
 
+  /**
+   * React.component's required render method.
+   * @return {JSX} Special React markup magic.
+   */
   render () {
     return (
       <div className='app'>
