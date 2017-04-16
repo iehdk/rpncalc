@@ -47,9 +47,10 @@ class AppContainer extends React.Component {
   }
 
   componentDidMount () {
-    // const os = require('os')
-    // console.log(os)
-    // console.log(os.homedir())
+    const os = require('os')
+    console.log(os)
+    console.log(os.homedir())
+
     this.inputElement.focus()
   }
 
