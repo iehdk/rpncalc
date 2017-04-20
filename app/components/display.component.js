@@ -1,6 +1,11 @@
 import React from 'react'
 
 class Display extends React.Component {
+  componentDidMount () {
+    const node = document.getElementById('display')
+    node.scrollTop = node.scrollHeight
+  }
+
   componentDidUpdate () {
     const node = document.getElementById('display')
     node.scrollTop = node.scrollHeight
