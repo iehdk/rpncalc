@@ -20,9 +20,8 @@ class Header extends React.Component {
   }
 
   exitApp () {
-    alert('exit you want?')
-    // const remote = require('electron').remote
-    // remote.app.quit()
+    const remote = require('electron').remote
+    remote.app.quit()
   }
 
   render () {
