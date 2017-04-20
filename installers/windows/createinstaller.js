@@ -14,7 +14,7 @@ function getInstallerConfig () {
   const outPath = path.join(rootPath, 'release-builds')
 
   return Promise.resolve({
-    appDirectory: path.join(outPath, 'rpncalc-app-win32-ia32/'),
+    appDirectory: path.join(outPath, 'rpncalc-win32-ia32/'),
     authors: 'Martin Asser Hansen',
     noMsi: true,
     outputDirectory: path.join(outPath, 'windows-installer'),

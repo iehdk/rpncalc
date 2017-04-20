@@ -16,11 +16,12 @@ module.exports = {
 
     const spawn = function (command, args) {
       let spawnedProcess
-      let error
 
       try {
         spawnedProcess = ChildProcess.spawn(command, args, {detached: true})
-      } catch (error) {}
+      } catch (error) {
+        console.log(error)
+      }
 
       return spawnedProcess
     }
