@@ -1,5 +1,4 @@
 import React from 'react'
-import Header from '../containers/header.container'
 import Prompt from '../components/prompt.component'
 import Display from '../components/display.component'
 import Keypad from '../components/keypad.component'
@@ -489,7 +488,6 @@ class AppContainer extends React.Component {
   render () {
     return (
       <div className='app'>
-        <Header />
         <Display
           rows={ROWS}
           cols={COLS}

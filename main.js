@@ -27,7 +27,9 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 360, height: 357, frame: false})
+  mainWindow = new BrowserWindow({width: 360, height: 360, frame: true})
+
+  mainWindow.setResizable(false)
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
