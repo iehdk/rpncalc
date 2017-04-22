@@ -16,7 +16,7 @@ function getInstallerConfig () {
   return Promise.resolve({
     appDirectory: path.join(outPath, 'rpncalc-win32-ia32/'),
     authors: 'Martin Asser Hansen',
-    noMsi: true,
+    noMsi: false,
     outputDirectory: path.join(outPath, 'windows-installer'),
     exe: 'rpncalc.exe',
     setupExe: 'rpncalc-installer.exe',
