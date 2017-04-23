@@ -1,4 +1,5 @@
 import React from 'react'
+import History from '../utils/history.util'
 import Prompt from '../components/prompt.component'
 import Display from '../components/display.component'
 import Keypad from '../components/keypad.component'
@@ -60,8 +61,9 @@ class AppContainer extends React.Component {
   constructor () {
     super()
 
-    let history = this.retrieveHistory() || []
-    let stack = history[history.length - 1] || []
+    let history = new History()
+    history.load()
+    let stack = history.last() || []
 
     this.state = {
       promptValue: '',
@@ -82,7 +84,7 @@ class AppContainer extends React.Component {
    * React lifecycle method called when component is updated.
    */
   componentDidUpdate () {
-    this.storeHistory()
+    this.state.history.save()
     this.inputElement.focus()
   }
 
@@ -273,55 +275,6 @@ class AppContainer extends React.Component {
   }
 
   /**
-   * Method that returns the path to the history file.
-   * @return {String} Full path to the history file.
-   */
-  historyFilePath () {
-    const os = require('os')
-    const path = require('path')
-    const homedir = os.homedir()
-    return path.join(homedir, '.rpncalc_history.json')
-  }
-
-  /**
-   * Store the history in JSON format to the history file.
-   * @return {Boolean} True on save success, else false.
-   */
-  storeHistory () {
-    if (this.state.history.length === 0) {
-      return
-    }
-
-    const fs = require('fs')
-    const json = JSON.stringify(this.state.history, null, 2)
-
-    fs.writeFile(this.historyFilePath(), json, function (err) {
-      if (err) {
-        return console.log(err)
-      }
-
-      return true
-    })
-  }
-
-  /**
-   * Retreive the history from the history file.
-   * @return {Array} History array
-   */
-  retrieveHistory () {
-    const fs = require('fs')
-    const file = this.historyFilePath()
-
-    if (!fs.existsSync(file)) {
-      return
-    }
-
-    const data = fs.readFileSync(file, 'utf8')
-
-    return JSON.parse(data)
-  }
-
-  /**
    * Add the current stack to the history if the stack is not empty.
    */
   addToHistory () {
@@ -330,7 +283,8 @@ class AppContainer extends React.Component {
     }
 
     let newStack = this.state.stack.slice()
-    let newHistory = this.state.history.slice()
+    let newHistory = new History(this.state.history.ary)
+
     newHistory.push(newStack)
     this.setState({history: newHistory})
   }
@@ -344,8 +298,9 @@ class AppContainer extends React.Component {
       return
     }
 
-    let newHistory = this.state.history.slice()
+    let newHistory = new History(this.state.history.ary)
     let newStack = newHistory.pop()
+
     this.setState({stack: newStack})
     this.setState({history: newHistory})
   }
