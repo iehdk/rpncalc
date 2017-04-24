@@ -1,5 +1,6 @@
 import React from 'react'
 import History from '../utils/history.util'
+import Stack from '../utils/stack.util'
 import Prompt from '../components/prompt.component'
 import Display from '../components/display.component'
 import Keypad from '../components/keypad.component'
@@ -63,7 +64,7 @@ class AppContainer extends React.Component {
 
     let history = new History()
     history.load()
-    let stack = history.last() || []
+    let stack = new Stack(history.last())
 
     this.state = {
       promptValue: '',
@@ -101,8 +102,14 @@ class AppContainer extends React.Component {
    * @param {Object} event Form submit event.
    */
   handleOnSubmit (event) {
-    this.addToStack()
-    this.setState({promptValue: ''})
+    let newStack = new Stack(this.state.stack.ary)
+    newStack.push(this.state.promptValue)
+
+    this.setState({
+      promptValue: '',
+      stack: newStack
+    })
+
     this.addToHistory()
     event.preventDefault()
   }
@@ -113,77 +120,69 @@ class AppContainer extends React.Component {
    */
   handleOnClick (event) {
     let value = event.currentTarget.value
+    let newStack = new Stack(this.state.stack.ary)
     let key
     let skipHistory = false
+    let newPromptValue
 
     switch (value) {
       case 'root':
-        this.calcRoot()
-        this.setState({promptValue: ''})
+        newStack.calcRoot()
         break
       case 'exp':
-        this.calcExp()
-        this.setState({promptValue: ''})
+        newStack.calcExp()
         break
       case 'reciprocal':
-        this.calcReciprocal()
-        this.setState({promptValue: ''})
+        newStack.calcReciprocal()
         break
       case 'add':
-        this.calcAdd()
-        this.setState({promptValue: ''})
+        newStack.calcAdd()
         break
       case 'subtract':
         if (this.state.promptValue) {
           if (this.state.promptValue.charAt(0) !== '-') {
-            this.setState({promptValue: '-' + this.state.promptValue})
+            newPromptValue = '-' + this.state.promptValue
           }
         } else {
-          this.calcSubstract()
-          this.setState({promptValue: ''})
+          newStack.calcSubstract()
         }
         break
       case 'multiply':
-        this.calcMultiply()
-        this.setState({promptValue: ''})
+        newStack.calcMultiply()
         break
       case 'divide':
-        this.calcDivide()
-        this.setState({promptValue: ''})
+        newStack.calcDivide()
         break
       case 'sum':
-        this.calcSum()
-        this.setState({promptValue: ''})
+        newStack.calcSum()
         break
       case 'del':
-        this.setState({promptValue: this.chopPromptValue()})
+        newPromptValue = this.chopPromptValue()
         break
       case 'clear':
-        this.setState({stack: []})
-        this.setState({promptValue: ''})
+        newStack.empty()
+        break
+      case 'pop':
+        newStack.pop()
+        break
+      case 'swap':
+        newStack.swap()
+        break
+      case 'enter':
+        newStack.push(this.state.promptValue)
         break
       case 'undo':
         this.undoHistory()
-        this.setState({promptValue: ''})
-        break
-      case 'pop':
-        this.popStack()
-        this.setState({promptValue: ''})
-        break
-      case 'swap':
-        this.swapStack()
-        this.setState({promptValue: ''})
-        break
-      case 'enter':
-        this.addToStack()
-        this.setState({promptValue: ''})
         break
       default:
         key = this.state.keys[value]
-        this.setState({promptValue: this.state.promptValue + key})
+        newPromptValue = this.state.promptValue + key
         skipHistory = true
         break
     }
+
+    this.setState({stack: newStack})
+    this.setState({promptValue: newPromptValue || ''})
 
     if (!skipHistory) {
       this.addToHistory()
@@ -201,91 +200,16 @@ class AppContainer extends React.Component {
   }
 
   /**
-   * Remove the last value on the stack.
-   */
-  popStack () {
-    let newStack = this.state.stack.slice()
-    const value = newStack.pop()
-
-    if (value) {
-      this.setState({stack: newStack})
-    }
-  }
-
-  /**
-   * Swap the last two values on the stack.
-   */
-  swapStack () {
-    if (this.state.stack.length < 2) {
-      return
-    }
-
-    let newStack = this.state.stack.slice()
-    const value2 = newStack.pop()
-    const value1 = newStack.pop()
-
-    newStack.push(value2)
-    newStack.push(value1)
-    this.setState({stack: newStack})
-  }
-
-  /**
-   * Add the promptValue to the stack unless it is an operator in which case
-   * the appropriate action is taken.
-   */
-  addToStack () {
-    let skipHistory = false
-
-    switch (this.state.promptValue) {
-      case '':
-        break
-      case '+':
-        this.calcAdd()
-        this.setState({promptValue: ''})
-        break
-      case '-':
-        this.calcSubstract()
-        this.setState({promptValue: ''})
-        break
-      case '*':
-        this.calcMultiply()
-        this.setState({promptValue: ''})
-        break
-      case '/':
-        this.calcDivide()
-        this.setState({promptValue: ''})
-        break
-      default:
-        let newStack = this.state.stack.slice()
-        const value = parseFloat(this.state.promptValue)
-
-        if (value || this.state.promptValue === '0') {
-          newStack.push(value)
-          this.setState({stack: newStack})
-        } else {
-          skipHistory = true
-        }
-
-        break
-    }
-
-    if (!skipHistory) {
-      this.addToHistory()
-    }
-  }
-
-  /**
    * Add the current stack to the history if the stack is not empty.
    */
   addToHistory () {
-    if (this.state.stack.length === 0) {
+    if (this.state.stack.ary.length === 0) {
       return
     }
 
-    let newStack = this.state.stack.slice()
     let newHistory = new History(this.state.history.ary)
 
-    newHistory.push(newStack)
+    newHistory.push(this.state.stack.ary)
     this.setState({history: newHistory})
   }
 
@@ -303,137 +227,6 @@ class AppContainer extends React.Component {
 
     this.setState({stack: newStack})
     this.setState({history: newHistory})
-  }
-
-  /**
-   * Calculate the square root of the last stack value which is replaced by the
-   * result.
-   */
-  calcRoot () {
-    let newStack = this.state.stack.slice()
-    const value = newStack.pop()
-
-    if (value && value > 0) {
-      newStack.push(Math.sqrt(value))
-      this.setState({stack: newStack})
-    }
-  }
-
-  /**
-   * Calculate the exponent x**y of using the two last stack values which are
-   * replaced by the result.
-   */
-  calcExp () {
-    if (this.state.stack.length < 2) {
-      return
-    }
-
-    let newStack = this.state.stack.slice()
-    const value2 = newStack.pop()
-    const value1 = newStack.pop()
-
-    newStack.push(value1 ** value2)
-    this.setState({stack: newStack})
-  }
-
-  /**
-   * Calculate the reciprocal value of using the last stack value which is
-   * replaced by the result.
-   */
-  calcReciprocal () {
-    let newStack = this.state.stack.slice()
-    const value = newStack.pop()
-
-    if (value) {
-      newStack.push(1 / value)
-      this.setState({stack: newStack})
-    }
-  }
-
-  /**
-   * Calculate the sum of all stack values which are replaced by the
-   * result.
-   */
-  calcSum () {
-    if (this.state.stack.length < 1) {
-      return
-    }
-
-    let sum = 0
-
-    for (let i = 0; i < this.state.stack.length; ++i) {
-      sum += this.state.stack[i]
-    }
-
-    this.setState({stack: [sum]})
-  }
-
-  /**
-   * Calculate the sum of the last two stack values which are replaced by the
-   * result.
-   */
-  calcAdd () {
-    if (this.state.stack.length < 2) {
-      return
-    }
-
-    let newStack = this.state.stack.slice()
-    const value2 = newStack.pop()
-    const value1 = newStack.pop()
-
-    newStack.push(value1 + value2)
-    this.setState({stack: newStack})
-  }
-
-  /**
-   * Calculate the subtraction of the last two stack values which are replaced
-   * by the result.
-   */
-  calcSubstract () {
-    if (this.state.stack.length < 2) {
-      return
-    }
-
-    let newStack = this.state.stack.slice()
-    const value2 = newStack.pop()
-    const value1 = newStack.pop()
-
-    newStack.push(value1 - value2)
-    this.setState({stack: newStack})
-  }
-
-  /**
-   * Calculate the multiplication of the last two stack values which are
-   * replaced by the result.
-   */
-  calcMultiply () {
-    if (this.state.stack.length < 2) {
-      return
-    }
-
-    let newStack = this.state.stack.slice()
-    const value2 = newStack.pop()
-    const value1 = newStack.pop()
-
-    newStack.push(value1 * value2)
-    this.setState({stack: newStack})
-  }
-
-  /**
-   * Calculate the division of the last two stack values which are replaced by
-   * the result.
-   */
-  calcDivide () {
-    if (this.state.stack.length < 2) {
-      return
-    }
-
-    let newStack = this.state.stack.slice()
-    const value2 = newStack.pop()
-    const value1 = newStack.pop()
-
-    newStack.push(value1 / value2)
-    this.setState({stack: newStack})
   }
 
   /**
