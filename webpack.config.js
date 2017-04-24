@@ -7,6 +7,7 @@ const config = {
     filename: 'app.bundle.js',
     publicPath: 'http://localhost:8080/dist/'
   },
+  devtool: '#eval-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
