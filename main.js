@@ -29,7 +29,7 @@ function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 360, height: 360, frame: true})
 
-  mainWindow.setResizable(false)
+  mainWindow.setResizable(true)
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({

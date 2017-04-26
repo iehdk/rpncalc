@@ -1,4 +1,6 @@
 $display-background-color: #e6e6e6;
+$btn-background-color: #404040;
+$btn-font-color: #fff;
 
 .display {
   textarea {
@@ -8,7 +10,7 @@ $display-background-color: #e6e6e6;
     font-size: 1em;
     font-weight: bold;
     height: 128px;
-    margin-bottom: -5px;
+    margin-bottom: -8px;
     overflow-y: scroll;
     resize: none;
     width: 100%;

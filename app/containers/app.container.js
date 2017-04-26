@@ -62,9 +62,11 @@ class AppContainer extends React.Component {
   constructor () {
     super()
 
-    let history = new History()
-    history.load()
-    let stack = new Stack(history.last())
+    let history, stack
+
+    history = new History()
+    // history.load() // FIXME
+    stack = new Stack(history.last())
 
     this.state = {
       promptValue: '',
@@ -85,7 +87,7 @@ class AppContainer extends React.Component {
    * React lifecycle method called when component is updated.
    */
   componentDidUpdate () {
-    this.state.history.save()
+    // this.state.history.save() // FIXME
     this.inputElement.focus()
   }
 
@@ -121,7 +123,6 @@ class AppContainer extends React.Component {
   handleOnClick (event) {
     let value = event.currentTarget.value
     let newStack = new Stack(this.state.stack.ary)
-    let key
     let skipHistory = false
     let newPromptValue
 
@@ -142,6 +143,7 @@ class AppContainer extends React.Component {
         if (this.state.promptValue) {
           if (this.state.promptValue.charAt(0) !== '-') {
             newPromptValue = '-' + this.state.promptValue
+            skipHistory = true
           }
         } else {
           newStack.calcSubstract()
@@ -175,7 +177,7 @@ class AppContainer extends React.Component {
         this.undoHistory()
         break
       default:
-        key = this.state.keys[value]
+        const key = this.state.keys[value]
         newPromptValue = this.state.promptValue + key
         skipHistory = true
         break
@@ -208,22 +210,22 @@ class AppContainer extends React.Component {
     }
 
     let newHistory = new History(this.state.history.ary)
+    let newStack = new Stack(this.state.stack.ary)
 
-    newHistory.push(this.state.stack.ary)
+    newHistory.push(newStack.ary)
     this.setState({history: newHistory})
   }
 
   /**
-   * Undo action by replacing the current stack with last one saved in the
-   * history.
+   * Undo action by replacing the current stack with last one from the history.
    */
   undoHistory () {
-    if (this.state.history.length === 0) {
+    if (this.state.history.ary.length === 0) {
       return
     }
 
     let newHistory = new History(this.state.history.ary)
-    let newStack = newHistory.pop()
+    let newStack = new Stack(newHistory.pop())
 
     this.setState({stack: newStack})
     this.setState({history: newHistory})
