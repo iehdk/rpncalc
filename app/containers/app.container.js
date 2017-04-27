@@ -65,7 +65,7 @@ class AppContainer extends React.Component {
     let history, stack
 
     history = new History()
-    // history.load() // FIXME
+    history.load()
     stack = new Stack(history.last())
 
     this.state = {
@@ -87,7 +87,7 @@ class AppContainer extends React.Component {
    * React lifecycle method called when component is updated.
    */
   componentDidUpdate () {
-    // this.state.history.save() // FIXME
+    this.state.history.save()
     this.inputElement.focus()
   }
 
