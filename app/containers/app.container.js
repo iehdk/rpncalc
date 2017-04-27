@@ -174,7 +174,7 @@ class AppContainer extends React.Component {
         newStack.push(this.state.promptValue)
         break
       case 'undo':
-        this.undoHistory()
+        newStack = this.undoHistory()
         skipHistory = true
         break
       default:
@@ -219,6 +219,7 @@ class AppContainer extends React.Component {
 
   /**
    * Undo action by replacing the current stack with last one from the history.
+   * @return {Stack} Stack object one step back in time.
    */
   undoHistory () {
     if (this.state.history.ary.length === 0) {
@@ -229,12 +230,9 @@ class AppContainer extends React.Component {
     newHistory.pop()
     let newStack = new Stack(newHistory.last())
 
-    console.log('here')
-    console.log(newHistory)
-    console.log(newStack)
-
-    this.setState({stack: newStack})
     this.setState({history: newHistory})
+
+    return newStack
   }
 
   /**
