@@ -223,12 +223,12 @@ class AppContainer extends React.Component {
    */
   undoHistory () {
     if (this.state.history.ary.length === 0) {
-      return
+      return this.state.stack
     }
 
     let newHistory = new History(this.state.history.ary)
     newHistory.pop()
-    let newStack = new Stack(newHistory.last())
+    let newStack = new Stack(JSON.parse(JSON.stringify(newHistory.last())))
 
     this.setState({history: newHistory})
 
