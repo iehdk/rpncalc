@@ -175,6 +175,7 @@ class AppContainer extends React.Component {
         break
       case 'undo':
         this.undoHistory()
+        skipHistory = true
         break
       default:
         const key = this.state.keys[value]
@@ -210,7 +211,7 @@ class AppContainer extends React.Component {
     }
 
     let newHistory = new History(this.state.history.ary)
-    let newStack = new Stack(this.state.stack.ary)
+    let newStack = new Stack(JSON.parse(JSON.stringify(this.state.stack.ary)))
 
     newHistory.push(newStack.ary)
     this.setState({history: newHistory})
@@ -225,7 +226,12 @@ class AppContainer extends React.Component {
     }
 
     let newHistory = new History(this.state.history.ary)
-    let newStack = new Stack(newHistory.pop())
+    newHistory.pop()
+    let newStack = new Stack(newHistory.last())
+
+    console.log('here')
+    console.log(newHistory)
+    console.log(newStack)
 
     this.setState({stack: newStack})
     this.setState({history: newHistory})
