@@ -1,4 +1,5 @@
 $display-background-color: #e6e6e6;
+$display-height: calc(100vh - 7 * 30px + 3px);
 $btn-background-color: #404040;
 $btn-font-color: #fff;
 
@@ -9,7 +10,7 @@ $btn-font-color: #fff;
     font-family: 'Courier New';
     font-size: 1em;
     font-weight: bold;
-    height: 128px;
+    height: $display-height;
     margin-bottom: -8px;
     overflow-y: scroll;
     resize: none;
