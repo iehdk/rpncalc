@@ -2,6 +2,7 @@ import React from 'react'
 import Key from '../components/key.component'
 import KeyExp from '../components/key-exp.component'
 import KeyDel from '../components/key-del.component'
+import KeySum from '../components/key-sum.component'
 import ReactTooltip from 'react-tooltip'
 
 class Keypad extends React.Component {
@@ -46,7 +47,7 @@ class Keypad extends React.Component {
         <div className='keypad-row'>
           {this.renderKey('key0', 2)}
           {this.renderKey('dot', 1)}
-          {this.renderKey('sum', 1)}
+          <KeySum handleOnClick={this.props.handleOnClick} />
           {this.renderKey('swap', 2)}
         </div>
         <div className='keypad-row'>
