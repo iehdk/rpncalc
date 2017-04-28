@@ -1,6 +1,7 @@
 import React from 'react'
 import Key from '../components/key.component'
 import KeyExp from '../components/key-exp.component'
+import ReactTooltip from 'react-tooltip'
 
 class Keypad extends React.Component {
   renderKey (value, width) {
@@ -12,6 +13,7 @@ class Keypad extends React.Component {
   render () {
     return (
       <div className='keypad'>
+        <ReactTooltip delayShow={1500} />
         <div className='keypad-row'>
           {this.renderKey('root', 1)}
           <KeyExp handleOnClick={this.props.handleOnClick} />

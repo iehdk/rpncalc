@@ -31,7 +31,8 @@
     "classnames": "^2.2.3",
     "node-sass": "^4.5.2",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-tooltip": "^3.3.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
