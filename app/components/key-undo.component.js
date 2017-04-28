@@ -2,7 +2,7 @@ import React from 'react'
 
 class KeyUndo extends React.Component {
   render () {
-    const tip = 'Undo last stack action'
+    const tip = 'Undo the last stack action'
 
     return (
       <button

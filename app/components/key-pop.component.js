@@ -2,7 +2,7 @@ import React from 'react'
 
 class KeyPop extends React.Component {
   render () {
-    const tip = 'Remove last element on the stack'
+    const tip = 'Remove the last element on the stack'
 
     return (
       <button
