@@ -3,6 +3,10 @@ import Key from '../components/key.component'
 import KeyExp from '../components/key-exp.component'
 import KeyDel from '../components/key-del.component'
 import KeySum from '../components/key-sum.component'
+import KeyUndo from '../components/key-undo.component'
+import KeySwap from '../components/key-swap.component'
+import KeyClear from '../components/key-clear.component'
+import KeyPop from '../components/key-pop.component'
 import ReactTooltip from 'react-tooltip'
 
 class Keypad extends React.Component {
@@ -28,27 +32,27 @@ class Keypad extends React.Component {
           {this.renderKey('key8', 1)}
           {this.renderKey('key9', 1)}
           {this.renderKey('multiply', 1)}
-          {this.renderKey('clear', 2)}
+          <KeyClear handleOnClick={this.props.handleOnClick} />
         </div>
         <div className='keypad-row'>
           {this.renderKey('key4', 1)}
           {this.renderKey('key5', 1)}
           {this.renderKey('key6', 1)}
           {this.renderKey('subtract', 1)}
-          {this.renderKey('undo', 2)}
+          <KeyUndo handleOnClick={this.props.handleOnClick} />
         </div>
         <div className='keypad-row'>
           {this.renderKey('key1', 1)}
           {this.renderKey('key2', 1)}
           {this.renderKey('key3', 1)}
           {this.renderKey('add', 1)}
-          {this.renderKey('pop', 2)}
+          <KeyPop handleOnClick={this.props.handleOnClick} />
         </div>
         <div className='keypad-row'>
           {this.renderKey('key0', 2)}
           {this.renderKey('dot', 1)}
           <KeySum handleOnClick={this.props.handleOnClick} />
-          {this.renderKey('swap', 2)}
+          <KeySwap handleOnClick={this.props.handleOnClick} />
         </div>
         <div className='keypad-row'>
           {this.renderKey('enter', 6)}
