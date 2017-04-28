@@ -1,6 +1,7 @@
 import React from 'react'
 import Key from '../components/key.component'
 import KeyExp from '../components/key-exp.component'
+import KeyDel from '../components/key-del.component'
 import ReactTooltip from 'react-tooltip'
 
 class Keypad extends React.Component {
@@ -19,7 +20,7 @@ class Keypad extends React.Component {
           <KeyExp handleOnClick={this.props.handleOnClick} />
           {this.renderKey('reciprocal', 1)}
           {this.renderKey('divide', 1)}
-          {this.renderKey('del', 2)}
+          <KeyDel handleOnClick={this.props.handleOnClick} />
         </div>
         <div className='keypad-row'>
           {this.renderKey('key7', 1)}
