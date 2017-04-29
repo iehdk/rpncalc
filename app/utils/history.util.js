@@ -14,6 +14,10 @@ class History {
    * @param  {Array} history History array.
    */
   constructor (history) {
+    /**
+     * Array for storing a list of stacks each representing a historic state.
+     * @type {Array}
+     */
     this.ary = history || []
   }
 
