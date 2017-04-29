@@ -1,15 +1,20 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class Key extends React.Component {
-  render () {
-    const className = 'key key-width-' + this.props.width
+function Key(props) {
+  const className = `key key-width-${props.width}`;
 
-    return (
-      <button className={className} type='button' value={this.props.value} onClick={this.props.handleOnClick}>
-        {this.props.label}
-      </button>
-    )
-  }
+  return (
+    <button className={className} type="button" value={props.value} onClick={props.handleOnClick}>
+      {this.props.label}
+    </button>
+  );
 }
 
-export default Key
+Key.propTypes = {
+  value: PropTypes.string,
+  width: PropTypes.number,
+  handleOnClick: PropTypes.func,
+};
+
+export default Key;
