@@ -10,5 +10,8 @@
         "react",
         "jsx-a11y",
         "import"
-    ]
+    ],
+    "rules": {
+      "react/require-default-props": "off"
+    }
 }
