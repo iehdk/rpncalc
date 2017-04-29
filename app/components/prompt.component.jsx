@@ -1,21 +1,31 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class Prompt extends React.Component {
-  render () {
+  render() {
     return (
-      <div className='prompt'>
+      <div className="prompt">
         <form onSubmit={this.props.handleOnSubmit}>
           <input
-            id='prompt'
+            id="prompt"
             ref={this.props.inputRef}
-            type='text'
+            type="text"
             size={this.props.cols}
             onChange={this.props.handleOnChange}
-            value={this.props.promptValue} />
+            value={this.props.promptValue}
+          />
         </form>
       </div>
-    )
+    );
   }
 }
 
-export default Prompt
+Prompt.propTypes = {
+  handleOnSubmit: PropTypes.func,
+  inputRef: PropTypes.func,
+  cols: PropTypes.number,
+  handleOnChange: PropTypes.func,
+  promptValue: PropTypes.string,
+};
+
+export default Prompt;
