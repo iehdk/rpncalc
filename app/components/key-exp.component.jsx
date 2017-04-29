@@ -1,30 +1,33 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class KeyExp extends React.Component {
-  render () {
-    const tip = 'Calculate the exponent ' +
-                'of the last two elements ' +
-                'on the stack where: ' +
-                '2: x and 1: y'
+function KeyExp(props) {
+  const tip = 'Calculate the exponent ' +
+              'of the last two elements ' +
+              'on the stack where: ' +
+              '2: x and 1: y';
 
-    return (
-      <button
-        data-tip={tip}
-        data-place='right'
-        className='key key-width-1'
-        type='button'
-        value='exp'
-        onClick={this.props.handleOnClick}
-      >
-        <span>
-          x
-          <sup>
-            y
-          </sup>
-        </span>
-      </button>
-    )
-  }
+  return (
+    <button
+      data-tip={tip}
+      data-place="right"
+      className="key key-width-1"
+      type="button"
+      value="exp"
+      onClick={props.handleOnClick}
+    >
+      <span>
+        x
+        <sup>
+          y
+        </sup>
+      </span>
+    </button>
+  );
 }
 
-export default KeyExp
+KeyExp.propTypes = {
+  handleOnClick: PropTypes.func,
+};
+
+export default KeyExp;
