@@ -7,6 +7,7 @@
   "scripts": {
     "start": "electron main.js",
     "watch": "./node_modules/.bin/webpack-dev-server --progress --colors",
+    "jsdoc": "./node_modules/.bin/jsdoc --configure ./jsdoc_conf.json",
     "package-mac": "electron-packager . --overwrite --asar=true --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
     "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds",
     "package-linux": "electron-packager . --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/icon.png --prune=true --out=release-builds",
@@ -45,6 +46,7 @@
     "electron-packager": "^8.6.0",
     "electron-react-devtools": "^0.4.0",
     "electron-winstaller": "^2.5.2",
+    "jsdoc": "^3.4.3",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
     "webpack": "^2.3.3",
