@@ -32,7 +32,7 @@ class Display extends React.Component {
 Display.propTypes = {
   rows: PropTypes.number,
   cols: PropTypes.number,
-  stack: PropTypes.string,
+  stack: PropTypes.instanceOf(Object),
 };
 
 export default Display;

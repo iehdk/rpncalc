@@ -6,12 +6,13 @@ function Key(props) {
 
   return (
     <button className={className} type="button" value={props.value} onClick={props.handleOnClick}>
-      {this.props.label}
+      {props.label}
     </button>
   );
 }
 
 Key.propTypes = {
+  label: PropTypes.string,
   value: PropTypes.string,
   width: PropTypes.number,
   handleOnClick: PropTypes.func,

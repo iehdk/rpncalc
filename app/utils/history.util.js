@@ -9,6 +9,15 @@ const fs = require('fs');
 const MAX_LENGTH = 50;
 
 /**
+ * Method that returns the path to the history file.
+ * @return {String} Full path to the history file.
+ */
+function historyFilePath() {
+  const homedir = os.homedir();
+  return path.join(homedir, '.rpncalc_history.json');
+}
+
+/**
  * Class for loading and saving history and supporting undo.
  * @type {Class}
  */
@@ -23,15 +32,6 @@ class History {
      * @type {Array}
      */
     this.ary = history || [];
-  }
-
-  /**
-   * Method that returns the path to the history file.
-   * @return {String} Full path to the history file.
-   */
-  static historyFilePath() {
-    const homedir = os.homedir();
-    return path.join(homedir, '.rpncalc_history.json');
   }
 
   /**
@@ -79,7 +79,7 @@ class History {
    * @return {this}
    */
   load() {
-    const file = this.historyFilePath();
+    const file = historyFilePath();
 
     if (!fs.existsSync(file)) {
       return null;
@@ -104,7 +104,7 @@ class History {
 
     const json = JSON.stringify(this.ary, null, 2);
 
-    fs.writeFile(this.historyFilePath(), json, (err) => {
+    fs.writeFile(historyFilePath(), json, (err) => {
       if (err) {
         console.log(err);
       }

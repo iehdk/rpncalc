@@ -1,4 +1,13 @@
 /**
+ * Return a string of whitespaces of a given size.
+ * @param  {Integer} size Padding size.
+ * @return {String}       Padding
+ */
+function getPadding(size) {
+  return (Array(size + 1).join(' '));
+}
+
+/**
  * Class for manipulating the calculator stack including performing operations
  * on the stack according to operators and commands.
  * @type {Class}
@@ -215,15 +224,6 @@ class Stack {
   }
 
   /**
-   * Return a string of whitespaces of a given size.
-   * @param  {Integer} size Padding size.
-   * @return {String}       Padding
-   */
-  static getPadding(size) {
-    return (Array(size + 1).join(' '));
-  }
-
-  /**
    * Render the stack array as a list of text lines separeted with a line
    * delimiter. This is to be used as the value of a textarea element.
    * @return {String} Stack as text string.
@@ -240,8 +240,8 @@ class Stack {
       const parts = value.toString().split('.');
       const valueSize = parts[0].length;
       const indexSize = index.toString().length;
-      const indexPadding = this.getPadding((maxIndexSize - indexSize) + 1);
-      const valuePadding = this.getPadding((maxPrefixSize - valueSize) + 1);
+      const indexPadding = getPadding((maxIndexSize - indexSize) + 1);
+      const valuePadding = getPadding((maxPrefixSize - valueSize) + 1);
 
       rows.push(`${indexPadding}${index}: ${valuePadding}${value}`);
     }

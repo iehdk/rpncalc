@@ -12,6 +12,7 @@
         "import"
     ],
     "rules": {
-      "react/require-default-props": "off"
+      "react/require-default-props": "off",
+      "no-console": "off"
     }
 }

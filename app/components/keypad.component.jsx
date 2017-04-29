@@ -69,7 +69,7 @@ class Keypad extends React.Component {
 }
 
 Keypad.propTypes = {
-  keys: PropTypes.shape,
+  keys: PropTypes.instanceOf(Object),
   handleOnClick: PropTypes.func,
 };
 
