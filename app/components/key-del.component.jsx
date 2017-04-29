@@ -1,21 +1,24 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class KeyDel extends React.Component {
-  render () {
-    const tip = 'Delete last character from prompt'
+function KeyDel(props) {
+  const tip = 'Delete last character from prompt';
 
-    return (
-      <button
-        data-tip={tip}
-        className='key key-width-2'
-        type='button'
-        value='del'
-        onClick={this.props.handleOnClick}
-      >
-        DEL
-      </button>
-    )
-  }
+  return (
+    <button
+      data-tip={tip}
+      className="key key-width-2"
+      type="button"
+      value="del"
+      onClick={props.handleOnClick}
+    >
+      DEL
+    </button>
+  );
 }
 
-export default KeyDel
+KeyDel.propTypes = {
+  handleOnClick: PropTypes.func,
+};
+
+export default KeyDel;
