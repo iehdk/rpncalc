@@ -31,6 +31,7 @@
     "babelify": "^7.2.0",
     "classnames": "^2.2.3",
     "node-sass": "^4.5.2",
+    "prop-types": "^15.5.8",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-tooltip": "^3.3.0"
