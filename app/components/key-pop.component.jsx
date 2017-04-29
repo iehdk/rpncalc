@@ -1,21 +1,24 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class KeyPop extends React.Component {
-  render () {
-    const tip = 'Remove the last element on the stack'
+function KeyPop(props) {
+  const tip = 'Remove the last element on the stack';
 
-    return (
-      <button
-        data-tip={tip}
-        className='key key-width-2'
-        type='button'
-        value='pop'
-        onClick={this.props.handleOnClick}
-      >
-        POP
-      </button>
-    )
-  }
+  return (
+    <button
+      data-tip={tip}
+      className="key key-width-2"
+      type="button"
+      value="pop"
+      onClick={props.handleOnClick}
+    >
+      POP
+    </button>
+  );
 }
 
-export default KeyPop
+KeyPop.propTypes = {
+  handleOnClick: PropTypes.func,
+};
+
+export default KeyPop;
