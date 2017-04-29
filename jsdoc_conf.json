@@ -1,7 +1,8 @@
 {
   "opts": {
     "recurse": true,
-    "destination": "./jsdoc"
+    "destination": "./jsdoc",
+    "template": "./node_modules/ink-docstrap/template"
   },
   "source": {
     "include": ["app"]
