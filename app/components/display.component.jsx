@@ -35,10 +35,4 @@ Display.propTypes = {
   stack: PropTypes.string,
 };
 
-Display.defaultProps = {
-  rows: 4,
-  cols: 30,
-  stack: 'fobar',
-};
-
 export default Display;
