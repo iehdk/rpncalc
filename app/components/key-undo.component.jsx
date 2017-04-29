@@ -1,21 +1,24 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class KeyUndo extends React.Component {
-  render () {
-    const tip = 'Undo the last stack action'
+function KeyUndo(props) {
+  const tip = 'Undo the last stack action';
 
-    return (
-      <button
-        data-tip={tip}
-        className='key key-width-2'
-        type='button'
-        value='undo'
-        onClick={this.props.handleOnClick}
-      >
-        UNDO
-      </button>
-    )
-  }
+  return (
+    <button
+      data-tip={tip}
+      className="key key-width-2"
+      type="button"
+      value="undo"
+      onClick={props.handleOnClick}
+    >
+      UNDO
+    </button>
+  );
 }
 
-export default KeyUndo
+KeyUndo.propTypes = {
+  handleOnClick: PropTypes.func,
+};
+
+export default KeyUndo;
