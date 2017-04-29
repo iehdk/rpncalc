@@ -1,8 +1,12 @@
+const os = require('os');
+const path = require('path');
+const fs = require('fs');
+
 /**
  * Max number of elements on the history array.
  * @type {Integer}
  */
-const MAX_LENGTH = 50
+const MAX_LENGTH = 50;
 
 /**
  * Class for loading and saving history and supporting undo.
@@ -13,35 +17,33 @@ class History {
    * Constructor for History.
    * @param  {Array} history History array.
    */
-  constructor (history) {
+  constructor(history) {
     /**
      * Array for storing a list of stacks each representing a historic state.
      * @type {Array}
      */
-    this.ary = history || []
+    this.ary = history || [];
   }
 
   /**
    * Method that returns the path to the history file.
    * @return {String} Full path to the history file.
    */
-  historyFilePath () {
-    const os = require('os')
-    const path = require('path')
-    const homedir = os.homedir()
-    return path.join(homedir, '.rpncalc_history.json')
+  static historyFilePath() {
+    const homedir = os.homedir();
+    return path.join(homedir, '.rpncalc_history.json');
   }
 
   /**
-   * Return last element on the history array. Return undef if no elements.
+   * Return last element on the history array. Return null if no elements.
    * @return {Object} History array element.
    */
-  last () {
+  last() {
     if (this.ary.length === 0) {
-      return
+      return null;
     }
 
-    return this.ary[this.ary.length - 1]
+    return this.ary[this.ary.length - 1];
   }
 
   /**
@@ -49,12 +51,12 @@ class History {
    * elements.
    * @return {Object} History array element.
    */
-  pop () {
+  pop() {
     if (this.ary.length === 0) {
-      return
+      return null;
     }
 
-    return this.ary.pop()
+    return this.ary.pop();
   }
 
   /**
@@ -62,56 +64,54 @@ class History {
    * @param  {Stack} elem Stack element.
    * @return {this}
    */
-  push (elem) {
-    this.ary.push(elem)
+  push(elem) {
+    this.ary.push(elem);
 
     if (this.ary.length > MAX_LENGTH) {
-      this.ary.shift()
+      this.ary.shift();
     }
 
-    return this
+    return this;
   }
 
   /**
    * Load the history from the history file.
    * @return {this}
    */
-  load () {
-    const fs = require('fs')
-    const file = this.historyFilePath()
+  load() {
+    const file = this.historyFilePath();
 
     if (!fs.existsSync(file)) {
-      return
+      return null;
     }
 
-    const data = fs.readFileSync(file, 'utf8')
-    const json = JSON.parse(data)
+    const data = fs.readFileSync(file, 'utf8');
+    const json = JSON.parse(data);
 
-    this.ary = json
+    this.ary = json;
 
-    return this
+    return this;
   }
 
   /**
    * Save the history in JSON format to the history file.
    * @return {this}
    */
-  save () {
+  save() {
     if (this.ary.length === 0) {
-      return
+      return null;
     }
 
-    const fs = require('fs')
-    const json = JSON.stringify(this.ary, null, 2)
+    const json = JSON.stringify(this.ary, null, 2);
 
-    fs.writeFile(this.historyFilePath(), json, function (err) {
+    fs.writeFile(this.historyFilePath(), json, (err) => {
       if (err) {
-        console.log(err)
+        console.log(err);
       }
-    })
+    });
 
-    return this
+    return this;
   }
 }
 
-export default History
+export default History;
