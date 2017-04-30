@@ -67,6 +67,14 @@ class AppContainer extends React.Component {
     history.load();
     const stack = new Stack(history.last());
 
+    /**
+     * [state description]
+     * @type {Object}
+     * @property {String} promptValue Prompt value.
+     * @property {Stack} stack The current stack.
+     * @property {History} history The current history.
+     * @property {Object} keys Map of key names and values.
+     */
     this.state = {
       promptValue: '',
       stack,
@@ -240,7 +248,7 @@ class AppContainer extends React.Component {
   }
 
   /**
-   * React.component's required render method.
+   * React.component's required render method for rendering the app.
    * @return {Object} JSX code that is transpiled to Javascript.
    */
   render() {

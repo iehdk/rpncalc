@@ -18,6 +18,10 @@ class Stack {
    * @param  {Array} stack Stack array.
    */
   constructor(stack) {
+    /**
+     * Array for the stacks.
+     * @type {Array}
+     */
     this.ary = stack || [];
   }
 

@@ -1,7 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * Component for the rending of the calculator prompt where you enter numbers
+ * and operators.
+ */
 class Prompt extends React.Component {
+  /**
+   * React.component's required render method for rendering the prompt.
+   * @return {Object} JSX code that is transpiled to Javascript.
+   * @property {Object} inputRef Callback for something clever.
+   * @property {Integer} cols Number of columns in the prompt input field.
+   * @property {Object} handleOnChange Event handler changes in the prompt.
+   * @property {String} promptValue Value in the prompt.
+   */
   render() {
     return (
       <div className="prompt">

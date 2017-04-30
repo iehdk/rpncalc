@@ -1,1 +1,5 @@
-{"source": "./app", "destination": "./doc"}
+{
+  "source": "./app",
+  "destination": "./doc",
+  "includes": ["\\.(js|jsx)$"]
+}

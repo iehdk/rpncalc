@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * Pure react function for the rendering of the CLEAR key on the keypad.
+ * Pure React function for the rendering of the CLEAR key on the keypad.
  * @param {Object} props Component properties.
  * @property {Object} handleOnClick Event handler for clicking the key.
  */

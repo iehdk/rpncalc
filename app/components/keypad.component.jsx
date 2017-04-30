@@ -10,7 +10,19 @@ import KeySwap from '../components/key-swap.component';
 import KeyClear from '../components/key-clear.component';
 import KeyPop from '../components/key-pop.component';
 
+/**
+ * Component for the rending of the calculator keypad.
+ */
 class Keypad extends React.Component {
+  /**
+   * Method for rendering a Key component.
+   * @param  {String} value Key value
+   * @param  {Integer} width Key width
+   * @property {Object} label Key label
+   * @property {Object} value Key value
+   * @property {Object} width Width of the key
+   * @property {Object} handleOnClick Event handler for clicking the key.
+   */
   renderKey(value, width) {
     return (
       <Key
@@ -22,6 +34,10 @@ class Keypad extends React.Component {
     );
   }
 
+  /**
+   * React.component's required render method for rendering the keypad.
+   * @return {Object} JSX code that is transpiled to Javascript.
+   */
   render() {
     return (
       <div className="keypad">

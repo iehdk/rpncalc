@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * Pure React function for the rendering of the x^y key on the keypad.
+ * @param {Object} props Component properties.
+ * @property {Object} handleOnClick Event handler for clicking the key.
+ */
 function KeyExp(props) {
   const tip = 'Calculate the exponent ' +
               'of the last two elements ' +

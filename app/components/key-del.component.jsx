@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * Pure React function for the rendering of the DEL key on the keypad.
+ * @param {Object} props Component properties.
+ * @property {Object} handleOnClick Event handler for clicking the key.
+ */
 function KeyDel(props) {
   const tip = 'Delete last character from prompt';
 

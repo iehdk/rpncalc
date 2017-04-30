@@ -28,6 +28,9 @@ class Display extends React.Component {
   /**
    * React.component's required render method for rendering the display.
    * @return {Object} JSX code that is transpiled to Javascript.
+   * @property {Integer} rows Number of rows in the display textarea.
+   * @property {Integer} cols Number of columns in the display textaera.
+   * @property {String} stack A text rendering of the stack for the display value.
    */
   render() {
     return (
