@@ -54,6 +54,7 @@ const KEYS = {
 /**
  * Main application container for the RPN calculator.
  * @type {React.Component}
+ * @extends {React.Component}
  */
 class AppContainer extends React.Component {
   /**
@@ -250,6 +251,17 @@ class AppContainer extends React.Component {
   /**
    * React.component's required render method for rendering the app.
    * @return {Object} JSX code that is transpiled to Javascript.
+   * @property {Number} rows Number of rows in Display element.
+   * @property {Number} cols Number of columns in Display and Prompt elements.
+   * @property {Number} prefixSize Size of prefix used for padding.
+   * @property {Number} suffixSize Size of suffex used for padding.
+   * @property {Stack} stack Current stack.
+   * @property {Object} inputRef ref callback.
+   * @property {String} promptValue Value in the prompt.
+   * @property {Object} handleOnChange Event handler for OnChange.
+   * @property {Object} handleOnSubmit Event hndler for OnSubmit.
+   * @property {Object} handleOnClick Event handler for OnClick.
+   * @property {Object} keys Map of key names and labels.
    */
   render() {
     return (

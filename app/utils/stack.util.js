@@ -1,6 +1,6 @@
 /**
  * Return a string of whitespaces of a given size.
- * @param  {Integer} size Padding size.
+ * @param  {Number} size Padding size.
  * @return {String}       Padding
  */
 function getPadding(size) {
@@ -208,7 +208,7 @@ class Stack {
 
   /**
    * Get the maximum prefix size needed to list the stack aligned on comma.
-   * @return {Integer}  Prefix size.
+   * @return {Number}  Prefix size.
    */
   getMaxPrefixSize() {
     let maxPrefixSize = 0;

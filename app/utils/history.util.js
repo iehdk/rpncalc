@@ -4,7 +4,7 @@ const fs = require('fs');
 
 /**
  * Max number of elements on the history array.
- * @type {Integer}
+ * @type {Number}
  */
 const MAX_LENGTH = 50;
 
@@ -24,7 +24,7 @@ function historyFilePath() {
 class History {
   /**
    * Constructor for History.
-   * @param  {Array} history History array.
+   * @param {Array} history History array.
    */
   constructor(history) {
     /**

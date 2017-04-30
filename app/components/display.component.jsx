@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 /**
  * Container for rendering the calculater display which is where the stack, or
  * list of entered and calculated numbers, is displayed.
- * @type {[type]}
+ * @type {React.Component}
+ * @extends {React.Component}
  */
 class Display extends React.Component {
   /**
@@ -28,8 +29,8 @@ class Display extends React.Component {
   /**
    * React.component's required render method for rendering the display.
    * @return {Object} JSX code that is transpiled to Javascript.
-   * @property {Integer} rows Number of rows in the display textarea.
-   * @property {Integer} cols Number of columns in the display textaera.
+   * @property {Number} rows Number of rows in the display textarea.
+   * @property {Number} cols Number of columns in the display textaera.
    * @property {String} stack A text rendering of the stack for the display value.
    */
   render() {

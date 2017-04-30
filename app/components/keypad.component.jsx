@@ -12,12 +12,14 @@ import KeyPop from '../components/key-pop.component';
 
 /**
  * Component for the rending of the calculator keypad.
+ * @type {React.Component}
+ * @extends {React.Component}
  */
 class Keypad extends React.Component {
   /**
    * Method for rendering a Key component.
    * @param  {String} value Key value
-   * @param  {Integer} width Key width
+   * @param  {Number} width Key width
    * @property {Object} label Key label
    * @property {Object} value Key value
    * @property {Object} width Width of the key
