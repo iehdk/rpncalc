@@ -1,4 +1,5 @@
 {
+  "access": ["public", "protected", "private"],
   "source": "./app",
   "destination": "./doc",
   "includes": ["\\.(js|jsx)$"]
