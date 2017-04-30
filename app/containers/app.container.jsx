@@ -83,9 +83,9 @@ class AppContainer extends React.Component {
       keys: KEYS,
     };
 
-    this.handleOnChange = this.handleOnChange.bind(this);
-    this.handleOnSubmit = this.handleOnSubmit.bind(this);
-    this.handleOnClick = this.handleOnClick.bind(this);
+    this._handleOnChange = this._handleOnChange.bind(this);
+    this._handleOnSubmit = this._handleOnSubmit.bind(this);
+    this._handleOnClick = this._handleOnClick.bind(this);
   }
 
   /**
@@ -107,7 +107,7 @@ class AppContainer extends React.Component {
    * Event handler for OnChange events in the Prompt component.
    * @param {Object} event Input field OnChange event.
    */
-  handleOnChange(event) {
+  _handleOnChange(event) {
     this.setState({ promptValue: event.target.value });
   }
 
@@ -115,7 +115,7 @@ class AppContainer extends React.Component {
    * Event handler for OnSubmit events in the Prompt component.
    * @param {Object} event Form submit event.
    */
-  handleOnSubmit(event) {
+  _handleOnSubmit(event) {
     const newStack = new Stack(this.state.stack.ary);
     newStack.push(this.state.promptValue);
 
@@ -132,7 +132,7 @@ class AppContainer extends React.Component {
    * Event handler for OnClick events in the Keypad component.
    * @param {Object} event Button OnClick event.
    */
-  handleOnClick(event) {
+  _handleOnClick(event) {
     const value = event.currentTarget.value;
     let newStack = new Stack(this.state.stack.ary);
     let skipHistory = false;
@@ -258,9 +258,9 @@ class AppContainer extends React.Component {
    * @property {Stack} stack Current stack.
    * @property {Object} inputRef ref callback.
    * @property {String} promptValue Value in the prompt.
-   * @property {Object} handleOnChange Event handler for OnChange.
-   * @property {Object} handleOnSubmit Event hndler for OnSubmit.
-   * @property {Object} handleOnClick Event handler for OnClick.
+   * @property {Object} _handleOnChange Event handler for OnChange.
+   * @property {Object} _handleOnSubmit Event hndler for OnSubmit.
+   * @property {Object} _handleOnClick Event handler for OnClick.
    * @property {Object} keys Map of key names and labels.
    */
   render() {
@@ -277,12 +277,12 @@ class AppContainer extends React.Component {
           cols={COLS}
           inputRef={(inputElement) => { this.inputElement = inputElement; }}
           promptValue={this.state.promptValue}
-          handleOnChange={this.handleOnChange}
-          handleOnSubmit={this.handleOnSubmit}
+          _handleOnChange={this._handleOnChange}
+          _handleOnSubmit={this._handleOnSubmit}
         />
         <Keypad
           keys={this.state.keys}
-          handleOnClick={this.handleOnClick}
+          _handleOnClick={this._handleOnClick}
         />
       </div>
     );
@@ -290,9 +290,9 @@ class AppContainer extends React.Component {
 }
 
 AppContainer.propTypes = {
-  handleOnSubmit: PropTypes.func,
-  handleOnChange: PropTypes.func,
-  handleOnClick: PropTypes.func,
+  _handleOnSubmit: PropTypes.func,
+  _handleOnChange: PropTypes.func,
+  _handleOnClick: PropTypes.func,
 };
 
 export default AppContainer;

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 /**
  * Pure React function for the rendering of the SUM key on the keypad.
  * @param {Object} props Component properties.
- * @property {Object} handleOnClick Event handler for clicking the key.
+ * @property {Object} _handleOnClick Event handler for clicking the key.
  */
 function KeySum(props) {
   const tip = 'Sum all values on the stack';
@@ -15,7 +15,7 @@ function KeySum(props) {
       className="key key-width-1"
       type="button"
       value="sum"
-      onClick={props.handleOnClick}
+      onClick={props._handleOnClick}
     >
       {'\u03a3'}
     </button>
@@ -23,7 +23,7 @@ function KeySum(props) {
 }
 
 KeySum.propTypes = {
-  handleOnClick: PropTypes.func,
+  _handleOnClick: PropTypes.func,
 };
 
 export default KeySum;

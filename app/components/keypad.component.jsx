@@ -23,7 +23,7 @@ class Keypad extends React.Component {
    * @property {Object} label Key label
    * @property {Object} value Key value
    * @property {Object} width Width of the key
-   * @property {Object} handleOnClick Event handler for clicking the key.
+   * @property {Object} _handleOnClick Event handler for clicking the key.
    */
   _renderKey(value, width) {
     return (
@@ -31,7 +31,7 @@ class Keypad extends React.Component {
         value={value}
         label={this.props.keys[value]}
         width={width}
-        handleOnClick={this.props.handleOnClick}
+        _handleOnClick={this.props._handleOnClick}
       />
     );
   }
@@ -46,37 +46,37 @@ class Keypad extends React.Component {
         <ReactTooltip delayShow={1500} />
         <div className="keypad-row">
           {this._renderKey('root', 1)}
-          <KeyExp handleOnClick={this.props.handleOnClick} />
+          <KeyExp _handleOnClick={this.props._handleOnClick} />
           {this._renderKey('reciprocal', 1)}
           {this._renderKey('divide', 1)}
-          <KeyDel handleOnClick={this.props.handleOnClick} />
+          <KeyDel _handleOnClick={this.props._handleOnClick} />
         </div>
         <div className="keypad-row">
           {this._renderKey('key7', 1)}
           {this._renderKey('key8', 1)}
           {this._renderKey('key9', 1)}
           {this._renderKey('multiply', 1)}
-          <KeyClear handleOnClick={this.props.handleOnClick} />
+          <KeyClear _handleOnClick={this.props._handleOnClick} />
         </div>
         <div className="keypad-row">
           {this._renderKey('key4', 1)}
           {this._renderKey('key5', 1)}
           {this._renderKey('key6', 1)}
           {this._renderKey('subtract', 1)}
-          <KeyUndo handleOnClick={this.props.handleOnClick} />
+          <KeyUndo _handleOnClick={this.props._handleOnClick} />
         </div>
         <div className="keypad-row">
           {this._renderKey('key1', 1)}
           {this._renderKey('key2', 1)}
           {this._renderKey('key3', 1)}
           {this._renderKey('add', 1)}
-          <KeyPop handleOnClick={this.props.handleOnClick} />
+          <KeyPop _handleOnClick={this.props._handleOnClick} />
         </div>
         <div className="keypad-row">
           {this._renderKey('key0', 2)}
           {this._renderKey('dot', 1)}
-          <KeySum handleOnClick={this.props.handleOnClick} />
-          <KeySwap handleOnClick={this.props.handleOnClick} />
+          <KeySum _handleOnClick={this.props._handleOnClick} />
+          <KeySwap _handleOnClick={this.props._handleOnClick} />
         </div>
         <div className="keypad-row">
           {this._renderKey('enter', 6)}
@@ -88,7 +88,7 @@ class Keypad extends React.Component {
 
 Keypad.propTypes = {
   keys: PropTypes.instanceOf(Object),
-  handleOnClick: PropTypes.func,
+  _handleOnClick: PropTypes.func,
 };
 
 export default Keypad;

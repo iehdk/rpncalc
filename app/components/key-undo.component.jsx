@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 /**
  * Pure React function for the rendering of the UNDO key on the keypad.
  * @param {Object} props Component properties.
- * @property {Object} handleOnClick Event handler for clicking the key.
+ * @property {Object} _handleOnClick Event handler for clicking the key.
  */
 function KeyUndo(props) {
   const tip = 'Undo the last stack action';
@@ -15,7 +15,7 @@ function KeyUndo(props) {
       className="key key-width-2"
       type="button"
       value="undo"
-      onClick={props.handleOnClick}
+      onClick={props._handleOnClick}
     >
       UNDO
     </button>
@@ -23,7 +23,7 @@ function KeyUndo(props) {
 }
 
 KeyUndo.propTypes = {
-  handleOnClick: PropTypes.func,
+  _handleOnClick: PropTypes.func,
 };
 
 export default KeyUndo;

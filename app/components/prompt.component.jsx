@@ -12,19 +12,19 @@ class Prompt extends React.Component {
    * @return {Object} JSX code that is transpiled to Javascript.
    * @property {Object} inputRef Callback for something clever.
    * @property {Number} cols Number of columns in the prompt input field.
-   * @property {Object} handleOnChange Event handler changes in the prompt.
+   * @property {Object} _handleOnChange Event handler changes in the prompt.
    * @property {String} promptValue Value in the prompt.
    */
   render() {
     return (
       <div className="prompt">
-        <form onSubmit={this.props.handleOnSubmit}>
+        <form onSubmit={this.props._handleOnSubmit}>
           <input
             id="prompt"
             ref={this.props.inputRef}
             type="text"
             size={this.props.cols}
-            onChange={this.props.handleOnChange}
+            onChange={this.props._handleOnChange}
             value={this.props.promptValue}
           />
         </form>
@@ -34,10 +34,10 @@ class Prompt extends React.Component {
 }
 
 Prompt.propTypes = {
-  handleOnSubmit: PropTypes.func,
+  _handleOnSubmit: PropTypes.func,
   inputRef: PropTypes.func,
   cols: PropTypes.number,
-  handleOnChange: PropTypes.func,
+  _handleOnChange: PropTypes.func,
   promptValue: PropTypes.string,
 };
 

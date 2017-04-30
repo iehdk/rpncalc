@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 /**
  * Pure React function for the rendering of the CLEAR key on the keypad.
  * @param {Object} props Component properties.
- * @property {Object} handleOnClick Event handler for clicking the key.
+ * @property {Object} _handleOnClick Event handler for clicking the key.
  */
 function KeyClear(props) {
   const tip = 'Clear the stack';
@@ -15,7 +15,7 @@ function KeyClear(props) {
       className="key key-width-2"
       type="button"
       value="clear"
-      onClick={props.handleOnClick}
+      onClick={props._handleOnClick}
     >
       CLEAR
     </button>
@@ -23,7 +23,7 @@ function KeyClear(props) {
 }
 
 KeyClear.propTypes = {
-  handleOnClick: PropTypes.func,
+  _handleOnClick: PropTypes.func,
 };
 
 export default KeyClear;
