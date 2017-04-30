@@ -124,7 +124,7 @@ class AppContainer extends React.Component {
       stack: newStack,
     });
 
-    this.addToHistory();
+    this._addToHistory();
     event.preventDefault();
   }
 
@@ -171,7 +171,7 @@ class AppContainer extends React.Component {
         newStack.calcSum();
         break;
       case 'del':
-        newPromptValue = this.chopPromptValue();
+        newPromptValue = this._chopPromptValue();
         break;
       case 'clear':
         newStack.empty();
@@ -186,7 +186,7 @@ class AppContainer extends React.Component {
         newStack.push(this.state.promptValue);
         break;
       case 'undo':
-        newStack = this.undoHistory();
+        newStack = this._undoHistory();
         skipHistory = true;
         break;
       default: {
@@ -209,7 +209,7 @@ class AppContainer extends React.Component {
    * Method that chops the promptValue, that is remove the last char.
    * @return {String} Chopped promptValue
    */
-  chopPromptValue() {
+  _chopPromptValue() {
     let promptValue = this.state.promptValue;
     promptValue = promptValue.substring(0, promptValue.length - 1);
     return (promptValue);
@@ -218,7 +218,7 @@ class AppContainer extends React.Component {
   /**
    * Add the current stack to the history if the stack is not empty.
    */
-  addToHistory() {
+  _addToHistory() {
     if (this.state.stack.ary.length === 0) {
       return;
     }
@@ -234,7 +234,7 @@ class AppContainer extends React.Component {
    * Undo action by replacing the current stack with last one from the history.
    * @return {Stack} Stack object one step back in time.
    */
-  undoHistory() {
+  _undoHistory() {
     if (this.state.history.ary.length === 0) {
       return this.state.stack;
     }

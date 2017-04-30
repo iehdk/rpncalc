@@ -3,7 +3,7 @@
  * @param  {Number} size Padding size.
  * @return {String}       Padding
  */
-function getPadding(size) {
+function _getPadding(size) {
   return (Array(size + 1).join(' '));
 }
 
@@ -210,7 +210,7 @@ class Stack {
    * Get the maximum prefix size needed to list the stack aligned on comma.
    * @return {Number}  Prefix size.
    */
-  getMaxPrefixSize() {
+  _getMaxPrefixSize() {
     let maxPrefixSize = 0;
 
     this.ary.map((value) => {
@@ -236,7 +236,7 @@ class Stack {
     const rows = [];
     const length = this.ary.length;
     const maxIndexSize = length.toString().length;
-    const maxPrefixSize = this.getMaxPrefixSize();
+    const maxPrefixSize = this._getMaxPrefixSize();
 
     for (let i = 0; i < length; i += 1) {
       const index = length - i;
@@ -244,8 +244,8 @@ class Stack {
       const parts = value.toString().split('.');
       const valueSize = parts[0].length;
       const indexSize = index.toString().length;
-      const indexPadding = getPadding((maxIndexSize - indexSize) + 1);
-      const valuePadding = getPadding((maxPrefixSize - valueSize) + 1);
+      const indexPadding = _getPadding((maxIndexSize - indexSize) + 1);
+      const valuePadding = _getPadding((maxPrefixSize - valueSize) + 1);
 
       rows.push(`${indexPadding}${index}: ${valuePadding}${value}`);
     }
