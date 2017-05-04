@@ -2,7 +2,7 @@ import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import History from '../../app/utils/history.util';
 
-describe('History', () => {
+describe('history.util -> History', () => {
   const history = new History();
 
   describe('Constructor', () => {

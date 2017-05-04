@@ -26,8 +26,30 @@ class Stack {
   }
 
   /**
+   * Get the maximum prefix size needed to list the stack aligned on comma.
+   * @return {Number}  Prefix size.
+   */
+  _getMaxPrefixSize() {
+    let maxPrefixSize = 0;
+
+    this.ary.map((value) => {
+      const parts = value.toString().split('.');
+      const prefixSize = parts[0].length;
+
+      if (prefixSize > maxPrefixSize) {
+        maxPrefixSize = prefixSize;
+      }
+
+      return maxPrefixSize;
+    });
+
+    return (maxPrefixSize);
+  }
+
+  /**
    * Calculate the square root of the last stack value which is replaced by the
    * result if the value is larger than 0.
+   * @return {this}
    */
   calcRoot() {
     const length = this.ary.length;
@@ -36,103 +58,124 @@ class Stack {
     if (length > 0 && this.ary[last] > 0) {
       this.ary[last] = Math.sqrt(this.ary[last]);
     }
+
+    return this;
   }
 
   /**
    * Calculate the exponent x**y of using the two last stack values which are
    * replaced by the result.
+   * @return {this}
    */
   calcExp() {
     if (this.ary.length < 2) {
-      return;
+      return this;
     }
 
     const value2 = this.ary.pop();
     const value1 = this.ary.pop();
 
     this.ary.push(value1 ** value2);
+
+    return this;
   }
 
   /**
    * Calculate the reciprocal value of using the last stack value which is
    * replaced by the result.
+   * @return {this}
    */
   calcReciprocal() {
     const length = this.ary.length;
     const last = length - 1;
 
-    if (length > 0) {
+    if (length > 0 && this.ary[last] !== 0) {
       this.ary[last] = 1 / this.ary[last];
     }
+
+    return this;
   }
 
   /**
    * Calculate the sum of the last two stack values which are replaced by the
    * result.
+   * @return {this}
    */
   calcAdd() {
     if (this.ary.length < 2) {
-      return;
+      return this;
     }
 
     const value2 = this.ary.pop();
     const value1 = this.ary.pop();
 
     this.ary.push(value1 + value2);
+
+    return this;
   }
 
   /**
    * Calculate the subtraction of the last two stack values which are replaced
    * by the result.
+   * @return {this}
    */
   calcSubstract() {
     if (this.ary.length < 2) {
-      return;
+      return this;
     }
 
     const value2 = this.ary.pop();
     const value1 = this.ary.pop();
 
     this.ary.push(value1 - value2);
+
+    return this;
   }
 
   /**
    * Calculate the multiplication of the last two stack values which are
    * replaced by the result.
+   * @return {this}
    */
   calcMultiply() {
     if (this.ary.length < 2) {
-      return;
+      return this;
     }
 
     const value2 = this.ary.pop();
     const value1 = this.ary.pop();
 
     this.ary.push(value1 * value2);
+
+    return this;
   }
 
   /**
    * Calculate the division of the last two stack values which are replaced by
    * the result.
+   * @return {this}
    */
   calcDivide() {
     if (this.ary.length < 2) {
-      return;
+      return this;
     }
 
     const value2 = this.ary.pop();
     const value1 = this.ary.pop();
 
     this.ary.push(value1 / value2);
+
+    return this;
   }
 
   /**
    * Calculate the sum of all stack values which are replaced by the
    * result.
+   * @return {this}
    */
   calcSum() {
     if (this.ary.length < 1) {
-      return;
+      return this;
     }
 
     let sum = 0;
@@ -142,21 +185,25 @@ class Stack {
     }
 
     this.ary = [sum];
+
+    return this;
   }
 
   /**
    * Remove the last value on the stack.
+   * @return {Object} Last stack element.
    */
   pop() {
-    this.ary.pop();
+    return this.ary.pop();
   }
 
   /**
    * Swap the last two values on the stack.
+   @return {this}
    */
   swap() {
     if (this.ary.length < 2) {
-      return;
+      return this;
     }
 
     const value2 = this.ary.pop();
@@ -164,6 +211,18 @@ class Stack {
 
     this.ary.push(value2);
     this.ary.push(value1);
+
+    return this;
+  }
+
+  /**
+   * Empty the stack array.
+   * @return {this}
+   */
+  empty() {
+    this.ary = [];
+
+    return this;
   }
 
   /**
@@ -197,34 +256,6 @@ class Stack {
         break;
       }
     }
-  }
-
-  /**
-   * Empty the stack array.
-   */
-  empty() {
-    this.ary = [];
-  }
-
-  /**
-   * Get the maximum prefix size needed to list the stack aligned on comma.
-   * @return {Number}  Prefix size.
-   */
-  _getMaxPrefixSize() {
-    let maxPrefixSize = 0;
-
-    this.ary.map((value) => {
-      const parts = value.toString().split('.');
-      const prefixSize = parts[0].length;
-
-      if (prefixSize > maxPrefixSize) {
-        maxPrefixSize = prefixSize;
-      }
-
-      return maxPrefixSize;
-    });
-
-    return (maxPrefixSize);
   }
 
   /**
