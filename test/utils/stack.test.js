@@ -1,8 +1,6 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-
-
-const Stack = require('../../app/utils/stack.util');
+import Stack from '../../app/utils/stack.util';
 
 describe('a passing test', () => {
   it('should pass', () => {
@@ -10,13 +8,11 @@ describe('a passing test', () => {
   });
 });
 
-//
-// describe('Stack', () => {
-//   describe('Constructor', () => {
-//     it('should have one property, ary', () => {
-//       const sut = new Stack();
-//       expect(sut).to.have.property('ary');
-//       expect(sut).to.have.property('ost');
-//     });
-//   });
-// });
+describe('Stack', () => {
+  describe('Constructor', () => {
+    it('should have one property, ary', () => {
+      const sut = new Stack();
+      expect(sut).to.have.property('ary'); // should pass
+    });
+  });
+});
