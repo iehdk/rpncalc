@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-expressions */
+
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
+import sinon from 'sinon';
 import Stack from '../../app/utils/stack.util';
 
-describe('stack.util -> Stack', () => {
-  describe('Constructor', () => {
+describe('stack.util -> Stack Class', () => {
+  describe('constructor', () => {
     const stack = new Stack();
 
     it('should have one property', () => {
@@ -280,6 +283,124 @@ describe('stack.util -> Stack', () => {
     const stack = new Stack([1, 2, 3]);
     it('should empty the stack', () => {
       expect(stack.empty().ary).to.eql([]);
+    });
+  });
+
+  describe('push', () => {
+    describe('with empty value', () => {
+      const stack = new Stack([1, 2]);
+      it('should do nothing', () => {
+        expect(stack.push('').ary).to.eql([1, 2]);
+      });
+    });
+
+    describe('with value +', () => {
+      const stack = new Stack([]);
+      const spy = sinon.spy(stack, 'calcAdd');
+      stack.push('+');
+      it('should call calcAdd method once', () => {
+        expect(spy).to.have.been.calledOnce;
+      });
+    });
+
+    describe('with value -', () => {
+      const stack = new Stack([]);
+      const spy = sinon.spy(stack, 'calcSubstract');
+      stack.push('-');
+      it('should call calcSubstrackt method once', () => {
+        expect(spy).to.have.been.calledOnce;
+      });
+    });
+
+    describe('with value *', () => {
+      const stack = new Stack([]);
+      const spy = sinon.spy(stack, 'calcMultiply');
+      stack.push('*');
+      it('should call calcMultiply method once', () => {
+        expect(spy).to.have.been.calledOnce;
+      });
+    });
+
+    describe('with value /', () => {
+      const stack = new Stack([]);
+      const spy = sinon.spy(stack, 'calcDivide');
+      stack.push('/');
+      it('should call calcDivide method once', () => {
+        expect(spy).to.have.been.calledOnce;
+      });
+    });
+
+    describe('with non-numeric value', () => {
+      const stack = new Stack([]);
+      it('should do nothing', () => {
+        expect(stack.push('foo').ary).to.eql([]);
+      });
+    });
+
+    describe('with numeric values', () => {
+      const stack = new Stack([]);
+      const values = ['0', '1', '-1', '1e2', '1e-2', '0.3', '-0.3'];
+      it('should add to the stack', () => {
+        for (let i = 0; i < values.length; i += 1) {
+          const value = values[i];
+          const result = parseFloat(values[i]);
+          stack.push(value);
+          expect(stack.ary[stack.ary.length - 1]).to.eql(result);
+        }
+      });
+    });
+  });
+
+  describe('render', () => {
+    describe('with empty stack', () => {
+      const stack = new Stack([]);
+      it('should render empty string', () => {
+        expect(stack.render()).to.eql('');
+      });
+    });
+
+    describe('with 10 items on the stack', () => {
+      const stack = new Stack([]);
+
+      for (let i = 0; i <= 10; i += 1) {
+        stack.push(i);
+      }
+
+      const expected =
+` 10:   1
+  9:   2
+  8:   3
+  7:   4
+  6:   5
+  5:   6
+  4:   7
+  3:   8
+  2:   9
+  1:  10`;
+
+      it('should indent the line number correctly', () => {
+        expect(stack.render()).to.eql(expected);
+      });
+    });
+
+    describe('with different number types', () => {
+      const stack = new Stack([0, -1, 0.1, -0.01, 1000.0, 1e-3]);
+
+      for (let i = 0; i < stack.length; i += 1) {
+        stack.push(i);
+      }
+
+      const expected =
+` 6:     0
+ 5:    -1
+ 4:     0.1
+ 3:    -0.01
+ 2:  1000
+ 1:     0.001`;
+
+      it('should align the numbers correctly', () => {
+        expect(stack.render()).to.eql(expected);
+      });
     });
   });
 });

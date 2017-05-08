@@ -229,6 +229,7 @@ class Stack {
    * Add the given value to the stack unless it is an operator in which case
    * the appropriate action is taken.
    * @param  {String} value Value to push onto stack.
+   * @return {this}
    */
   push(value) {
     switch (value) {
@@ -256,6 +257,8 @@ class Stack {
         break;
       }
     }
+
+    return this;
   }
 
   /**
@@ -281,7 +284,7 @@ class Stack {
       rows.push(`${indexPadding}${index}: ${valuePadding}${value}`);
     }
 
-    return (rows.join('\r\n'));
+    return (rows.join('\n'));
   }
 }
 

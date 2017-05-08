@@ -2,10 +2,10 @@ import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import History from '../../app/utils/history.util';
 
-describe('history.util -> History', () => {
+describe('history.util -> History Class', () => {
   const history = new History();
 
-  describe('Constructor', () => {
+  describe('constructor', () => {
     it('should have one property', () => {
       expect(Object.keys(history).length).to.eql(1);
     });
