@@ -88,10 +88,10 @@ class History {
       return this;
     }
 
-    const data = fs.readFileSync(file, 'utf8');
-    const json = JSON.parse(data);
+    const json = fs.readFileSync(file, 'utf8');
+    const data = JSON.parse(json);
 
-    this.ary = json;
+    this.ary = data;
 
     return this;
   }
