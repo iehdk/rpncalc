@@ -1,6 +1,12 @@
-import { describe, it } from 'mocha';
+/* eslint-disable no-unused-expressions */
+
+import { beforeEach, describe, it } from 'mocha';
 import { expect } from 'chai';
+// import fs from 'fs';
+import sinon from 'sinon';
 import History from '../../app/utils/history.util';
+
+const fs = require('fs');
 
 /**
  * Max number of elements on the history array.
@@ -141,7 +147,21 @@ describe('history.util -> History Class', () => {
   });
 
   describe('load', () => {
+    const fileName = 'foo';
+    let history;
 
+    // Create a fresh instance for each test.
+    beforeEach(() => {
+      history = new History();
+    });
+
+    it('should call `fs.existsSync` with the correct file path', () => {
+      // make `fs.existsSync()` return false, we're only testing its arguments
+      const stub = sinon.stub(fs, 'existsSync').returns(false);
+      history.load();
+      expect(stub.calledWith(fileName)).to.be.true;
+      stub.restore();
+    });
   });
 
   describe('save', () => {

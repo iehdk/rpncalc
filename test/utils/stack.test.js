@@ -301,6 +301,7 @@ describe('stack.util -> Stack Class', () => {
       it('should call calcAdd method once', () => {
         expect(spy).to.have.been.calledOnce;
       });
+      spy.restore();
     });
 
     describe('with value -', () => {
@@ -310,6 +311,7 @@ describe('stack.util -> Stack Class', () => {
       it('should call calcSubstrackt method once', () => {
         expect(spy).to.have.been.calledOnce;
       });
+      spy.restore();
     });
 
     describe('with value *', () => {
@@ -319,6 +321,7 @@ describe('stack.util -> Stack Class', () => {
       it('should call calcMultiply method once', () => {
         expect(spy).to.have.been.calledOnce;
       });
+      spy.restore();
     });
 
     describe('with value /', () => {
@@ -328,6 +331,7 @@ describe('stack.util -> Stack Class', () => {
       it('should call calcDivide method once', () => {
         expect(spy).to.have.been.calledOnce;
       });
+      spy.restore();
     });
 
     describe('with non-numeric value', () => {

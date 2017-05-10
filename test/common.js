@@ -1,5 +1,6 @@
 'use strict';
 
+global.mocha = require('mocha');
 global.chai = require('chai');
 global.sinon = require('sinon');
 global.sinonChai = require('sinon-chai');
