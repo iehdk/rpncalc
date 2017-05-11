@@ -151,23 +151,56 @@ describe('history.util -> History Class', () => {
     const sandbox = sinon.sandbox.create();
     let history;
 
-    // Create a fresh instance for each test.
     beforeEach(() => {
       history = new History();
     });
 
-    // Restore the sandbox after each test.
     afterEach(() => {
       sandbox.restore();
     });
 
-    it('should call `fs.existsSync` with the correct file path', () => {
-      // make `fs.existsSync()` return false, we're only testing its arguments
-      const stub = sandbox.stub(fs, 'existsSync').returns(false);
-      history.load();
-      expect(stub.calledWith(fileName)).to.be.true;
+    describe('with no existing history file', () => {
+      it('should have an empty history ary', () => {
+        // make `fs.existsSync()` return false
+        const stub = sandbox.stub(fs, 'existsSync').returns(false);
+        history.load();
+        expect(history.ary).to.eql([]);
+      });
+    });
+
+    describe('with existing history file', () => {
+      it('should load the content into the history ary', () => {
+        // make `fs.existsSync()` return false
+        const stub1 = sandbox.stub(fs, 'existsSync').returns(true);
+        const stub2 = sandbox.stub(fs, 'readFileSync').returns('[[1], [2, 3]]');
+        history.load();
+        expect(history.ary).to.eql([[1],[2, 3]]);
+      });
     });
   });
+
+  // describe('load', () => {
+  //   const fileName = 'foo';
+  //   const sandbox = sinon.sandbox.create();
+  //   let history;
+  //
+  //   // Create a fresh instance for each test.
+  //   beforeEach(() => {
+  //     history = new History();
+  //   });
+  //
+  //   // Restore the sandbox after each test.
+  //   afterEach(() => {
+  //     sandbox.restore();
+  //   });
+  //
+  //   it('should call `fs.existsSync` with the correct file path', () => {
+  //     // make `fs.existsSync()` return false, we're only testing its arguments
+  //     const stub = sandbox.stub(fs, 'existsSync').returns(false);
+  //     history.load();
+  //     expect(stub.calledWith(fileName)).to.be.true;
+  //   });
+  // });
 
   describe('save', () => {
 
