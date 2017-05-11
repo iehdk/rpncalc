@@ -75,7 +75,7 @@ class Stack {
     const value2 = this.ary.pop();
     const value1 = this.ary.pop();
 
-    this.ary.push(value1 ** value2);
+    this.ary.push(Math.pow(value1, value2));
 
     return this;
   }
