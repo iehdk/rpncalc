@@ -160,7 +160,7 @@ describe('history.util -> History Class', () => {
 
     describe('with no existing history file', () => {
       it('should have an empty history ary', () => {
-        const stub = sandbox.stub(fs, 'existsSync').returns(false);
+        sandbox.stub(fs, 'existsSync').returns(false);
         history.load();
         expect(history.ary).to.eql([]);
       });
@@ -168,8 +168,8 @@ describe('history.util -> History Class', () => {
 
     describe('with existing history file', () => {
       it('should load the content into the history ary', () => {
-        const stub1 = sandbox.stub(fs, 'existsSync').returns(true);
-        const stub2 = sandbox.stub(fs, 'readFileSync').returns('[[1], [2, 3]]');
+        sandbox.stub(fs, 'existsSync').returns(true);
+        sandbox.stub(fs, 'readFileSync').returns('[[1], [2, 3]]');
         history.load();
         expect(history.ary).to.eql([[1], [2, 3]]);
       });
@@ -189,26 +189,29 @@ describe('history.util -> History Class', () => {
     });
 
     describe('with empty history ary', () => {
-      history = new History();
       it('should do nothing', () => {
-        // make `fs.existsSync()` return false
-        const spy = sinon.stub(fs, 'writeFile')
-        history.load();
-        expect(spy).to.have.been.calledOnce();
+        history = new History();
+        const spy = sandbox.spy(fs, 'writeFile');
+        history.save();
+        expect(spy).to.have.callCount(0);
+      });
+    });
+
+    describe('with fs error', () => {
+      it('should output errors to console', () => {
+        sandbox.stub(fs, 'writeFile').yields(new Error());
+        const consoleSpy = sandbox.spy(console, 'log');
+        history.save();
+        expect(consoleSpy).to.have.been.calledOnce;
       });
     });
 
     describe('with non-empty history ary', () => {
-      it('should out errors to console'), () => {
-
-      }
-
       it('should save the history to file', () => {
-        // make `fs.existsSync()` return false
-        const stub1 = sandbox.stub(fs, 'existsSync').returns(true);
-        const stub2 = sandbox.stub(fs, 'readFileSync').returns('[[1], [2, 3]]');
-        history.load();
-        expect(history.ary).to.eql([[1],[2, 3]]);
+        const saveStub = sandbox.stub(fs, 'writeFile');
+        const expected = JSON.stringify([[4], [5, 6]], null, 2);
+        history.save();
+        expect(saveStub).to.have.been.calledWith(sinon.match.any, expected);
       });
     });
   });
