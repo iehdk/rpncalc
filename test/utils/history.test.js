@@ -1,10 +1,18 @@
 /* eslint-disable no-unused-expressions */
 
+// import { afterEach, beforeEach, describe, it } from 'mocha';
+// import { expect } from 'chai';
+// import sinon from 'sinon';
+// import fs from 'fs';
+// import History from '../../app/utils/history.util';
+
 import { afterEach, beforeEach, describe, it } from 'mocha';
 import { expect } from 'chai';
+// import fs from 'fs';
 import sinon from 'sinon';
-import fs from 'fs';
 import History from '../../app/utils/history.util';
+
+const fs = require('fs');
 
 /**
  * Max number of elements on the history array.
@@ -197,7 +205,7 @@ describe('history.util -> History Class', () => {
 
     describe('with fs error', () => {
       it('should output errors to console', () => {
-        sandbox.stub(fs, 'writeFile').yields(new Error());
+        sandbox.stub(fs, 'writeFile').yields(new Error()); // FIXME stub Error
         const consoleSpy = sandbox.spy(console, 'log');
         history.save();
         expect(consoleSpy).to.have.been.calledOnce;

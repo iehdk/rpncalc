@@ -2,8 +2,6 @@
 
 'use strict';
 
-import React from 'react';
-import { mount, render, shallow } from 'enzyme';
 import { mocha } from 'mocha';
 // import { expect, should } from 'chai';
 import { sinon } from 'sinon';
