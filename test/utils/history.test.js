@@ -2,6 +2,7 @@
 
 import { afterEach, beforeEach, describe, it } from 'mocha';
 import { expect } from 'chai';
+import sinon from 'sinon';
 import fs from 'fs';
 import History from '../../app/utils/history.util';
 
