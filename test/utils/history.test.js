@@ -2,11 +2,8 @@
 
 import { afterEach, beforeEach, describe, it } from 'mocha';
 import { expect } from 'chai';
-// import fs from 'fs';
-import sinon from 'sinon';
+import fs from 'fs';
 import History from '../../app/utils/history.util';
-
-const fs = require('fs');
 
 /**
  * Max number of elements on the history array.
