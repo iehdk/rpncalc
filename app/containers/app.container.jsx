@@ -201,7 +201,7 @@ class AppContainer extends React.Component {
     this.setState({ promptValue: newPromptValue || '' });
 
     if (!skipHistory) {
-      this.addToHistory();
+      this._addToHistory();
     }
   }
 
