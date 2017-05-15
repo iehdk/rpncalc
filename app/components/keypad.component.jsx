@@ -3,12 +3,6 @@ import ReactTooltip from 'react-tooltip';
 import PropTypes from 'prop-types';
 import Key from '../components/key.component';
 import KeyExp from '../components/key-exp.component';
-import KeyDel from '../components/key-del.component';
-import KeySum from '../components/key-sum.component';
-import KeyUndo from '../components/key-undo.component';
-import KeySwap from '../components/key-swap.component';
-import KeyClear from '../components/key-clear.component';
-import KeyPop from '../components/key-pop.component';
 
 /**
  * Component for the rending of the calculator keypad.
@@ -23,11 +17,13 @@ class Keypad extends React.Component {
    * @property {Object} label Key label
    * @property {Object} value Key value
    * @property {Object} width Width of the key
+   * @property {Object} toolTip Description of key action - optional
    * @property {Object} _handleOnClick Event handler for clicking the key.
    */
-  _renderKey(value, width) {
+  _renderKey(value, width, toolTip) {
     return (
       <Key
+        toolTip={toolTip}
         value={value}
         label={this.props.keys[value]}
         width={width}
@@ -49,34 +45,34 @@ class Keypad extends React.Component {
           <KeyExp _handleOnClick={this.props._handleOnClick} />
           {this._renderKey('reciprocal', 1)}
           {this._renderKey('divide', 1)}
-          <KeyDel _handleOnClick={this.props._handleOnClick} />
+          {this._renderKey('del', 2, 'Delete last character from prompt')}
         </div>
         <div className="keypad-row">
           {this._renderKey('key7', 1)}
           {this._renderKey('key8', 1)}
           {this._renderKey('key9', 1)}
           {this._renderKey('multiply', 1)}
-          <KeyClear _handleOnClick={this.props._handleOnClick} />
+          {this._renderKey('clear', 2, 'Clear the stack')}
         </div>
         <div className="keypad-row">
           {this._renderKey('key4', 1)}
           {this._renderKey('key5', 1)}
           {this._renderKey('key6', 1)}
           {this._renderKey('subtract', 1)}
-          <KeyUndo _handleOnClick={this.props._handleOnClick} />
+          {this._renderKey('undo', 2, 'Undo the last stack action')}
         </div>
         <div className="keypad-row">
           {this._renderKey('key1', 1)}
           {this._renderKey('key2', 1)}
           {this._renderKey('key3', 1)}
           {this._renderKey('add', 1)}
-          <KeyPop _handleOnClick={this.props._handleOnClick} />
+          {this._renderKey('pop', 2, 'Remove the last element on the stack')}
         </div>
         <div className="keypad-row">
           {this._renderKey('key0', 2)}
           {this._renderKey('dot', 1)}
-          <KeySum _handleOnClick={this.props._handleOnClick} />
-          <KeySwap _handleOnClick={this.props._handleOnClick} />
+          {this._renderKey('sum', 1, 'Sum all values on the stack')}
+          {this._renderKey('swap', 2, 'Swap the last two values on the stack')}
         </div>
         <div className="keypad-row">
           {this._renderKey('enter', 6)}

@@ -5,25 +5,25 @@ import { beforeEach, describe, it } from 'mocha';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import KeyClear from '../../app/components/key-clear.component';
+import KeyExp from '../../app/components/key-exp.component';
 
-describe('<KeyClear />', () => {
+describe('<KeyExp />', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<KeyClear />);
+    wrapper = shallow(<KeyExp />);
   });
 
   it('should have one button', () => {
     expect(wrapper.find('button')).to.have.length(1);
   });
 
-  it('should have class names key key-width-2', () => {
-    expect(wrapper.find('button').hasClass('key key-width-2')).to.be.true;
+  it('should have class names key key-width-1', () => {
+    expect(wrapper.find('button').hasClass('key key-width-1')).to.be.true;
   });
 
-  it('should have the text CLEAR', () => {
-    expect(wrapper.text()).to.equal('CLEAR');
+  it('should have the text xy', () => {
+    expect(wrapper.text()).to.equal('xy');
   });
 
   it('should have props onclick event handler', () => {

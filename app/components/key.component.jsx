@@ -13,13 +13,20 @@ function Key(props) {
   const className = `key key-width-${props.width}`;
 
   return (
-    <button className={className} type="button" value={props.value} onClick={props._handleOnClick}>
+    <button
+      data-tip={props.toolTip}
+      className={className}
+      type="button"
+      value={props.value}
+      onClick={props._handleOnClick}
+    >
       {props.label}
     </button>
   );
 }
 
 Key.propTypes = {
+  toolTip: PropTypes.string,
   label: PropTypes.string,
   value: PropTypes.string,
   width: PropTypes.number,
