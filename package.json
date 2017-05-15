@@ -7,7 +7,7 @@
   "scripts": {
     "start": "electron main.js",
     "watch": "./node_modules/.bin/webpack-dev-server --progress --colors",
-    "test": "./node_modules/.bin/mocha --recursive --compilers jsx:babel-core/register",
+    "test": "./node_modules/.bin/mocha",
     "test:watch": "npm test -- --watch",
     "report:test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha",
     "report:doc": "./node_modules/.bin/esdoc",
@@ -37,12 +37,13 @@
     "classnames": "^2.2.3",
     "electron": "^1.6.2",
     "enzyme": "^2.8.2",
+    "jsdom": "^10.1.0",
+    "mocha": "^3.3.0",
     "node-sass": "^4.5.2",
     "prop-types": "^15.5.8",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-tooltip": "^3.3.0",
-    "mocha": "^3.3.0",
     "sinon": "^2.2.0",
     "sinon-chai": "^2.10.0"
   },

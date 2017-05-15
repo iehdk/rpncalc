@@ -7,7 +7,7 @@ import { shallow } from 'enzyme';
 
 import KeyClear from '../../app/components/key-clear.component';
 
-describe('<KeyClear/>', () => {
+describe('<KeyClear />', () => {
   let wrapper;
 
   beforeEach(() => {
