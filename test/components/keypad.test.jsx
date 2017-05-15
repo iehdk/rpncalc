@@ -10,13 +10,13 @@ import Keypad from '../../app/components/keypad.component';
 describe('<Keypad />', () => {
   let wrapper;
 
-  beforeEach(() => {
-    wrapper = mount(<Keypad />);
-  });
-
-  it('should have one button', () => {
-    expect(wrapper.find('button')).to.have.length(1);
-  });
+  // beforeEach(() => {
+  //   wrapper = mount(<Keypad />);
+  // });
+  //
+  // it('should have one button', () => {
+  //   expect(wrapper.find('button')).to.have.length(1);
+  // });
 
   // it('should have class names key key-width-2', () => {
   //   expect(wrapper.find('button').hasClass('key key-width-2')).to.be.true;
