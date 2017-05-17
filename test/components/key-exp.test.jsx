@@ -14,6 +14,10 @@ describe('<KeyExp />', () => {
     wrapper = shallow(<KeyExp />);
   });
 
+  it('should render without blowing up', () => {
+    expect(wrapper.length).to.eql(1);
+  });
+
   it('should have one button', () => {
     expect(wrapper.find('button')).to.have.length(1);
   });

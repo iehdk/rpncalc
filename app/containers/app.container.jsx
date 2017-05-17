@@ -253,8 +253,6 @@ class AppContainer extends React.Component {
    * @return {Object} JSX code that is transpiled to Javascript.
    * @property {Number} rows Number of rows in Display element.
    * @property {Number} cols Number of columns in Display and Prompt elements.
-   * @property {Number} prefixSize Size of prefix used for padding.
-   * @property {Number} suffixSize Size of suffex used for padding.
    * @property {Stack} stack Current stack.
    * @property {Object} inputRef ref callback.
    * @property {String} promptValue Value in the prompt.
@@ -269,8 +267,6 @@ class AppContainer extends React.Component {
         <Display
           rows={ROWS}
           cols={COLS}
-          prefixSize={this.state.prefixSize}
-          suffixSize={this.state.suffixSize}
           stack={this.state.stack}
         />
         <Prompt

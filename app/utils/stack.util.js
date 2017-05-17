@@ -174,7 +174,7 @@ class Stack {
    * @return {this}
    */
   calcSum() {
-    if (this.ary.length < 1) {
+    if (this.ary.length <= 1) {
       return this;
     }
 
