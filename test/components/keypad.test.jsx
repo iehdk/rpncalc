@@ -6,27 +6,20 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 
 import Keypad from '../../app/components/keypad.component';
+import Key from '../../app/components/key.component';
 
 describe('<Keypad />', () => {
   let wrapper;
 
-  // beforeEach(() => {
-  //   wrapper = mount(<Keypad />);
-  // });
-  //
-  // it('should have one button', () => {
-  //   expect(wrapper.find('button')).to.have.length(1);
-  // });
+  beforeEach(() => {
+    wrapper = mount(<Keypad />);
+  });
 
-  // it('should have class names key key-width-2', () => {
-  //   expect(wrapper.find('button').hasClass('key key-width-2')).to.be.true;
-  // });
+  it('should render without blowing up', () => {
+    expect(wrapper.length).to.eql(1);
+  });
 
-  // it('should have the text CLEAR', () => {
-  //   expect(wrapper.text()).to.equal('CLEAR');
-  // });
-
-  // it('should have props onclick event handler', () => {
-  //   expect(wrapper.props()._handleOnClick).to.be.defined;
-  // });
+  it('should have x <Key /> components', () => {
+    expect(wrapper.find(Key)).to.have.length(1);
+  });
 });
