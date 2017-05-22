@@ -13,8 +13,7 @@ class Display extends React.Component {
    * the component mounts.
    */
   componentDidMount() {
-    const node = document.getElementById('display');
-    node.scrollTop = node.scrollHeight;
+    this._scrollDown();
   }
 
   /**
@@ -22,7 +21,14 @@ class Display extends React.Component {
    * the component updates.
    */
   componentDidUpdate() {
-    const node = document.getElementById('display');
+    this._scrollDown();
+  }
+
+  /**
+   * Scroll to the buttom of the display text area.
+   */
+  _scrollDown() {
+    const node = this.displayRef;
     node.scrollTop = node.scrollHeight;
   }
 
@@ -41,6 +47,7 @@ class Display extends React.Component {
         <textarea
           readOnly
           id="display"
+          ref={displayRef => { this.displayRef = displayRef }}
           rows={this.props.rows}
           cols={this.props.cols}
           value={this.props.stack.render()}

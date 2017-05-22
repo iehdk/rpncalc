@@ -3,7 +3,7 @@
 import React from 'react';
 import { beforeEach, describe, it } from 'mocha';
 import { expect } from 'chai';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import Display from '../../app/components/display.component';
 import Stack from '../../app/utils/stack.util';
@@ -12,7 +12,7 @@ describe('<Display />', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = mount(<Display
+    wrapper = shallow(<Display
       cols={3} rows={2} stack={new Stack([])}
     />);
   });

@@ -3,7 +3,7 @@
 import React from 'react';
 import { beforeEach, describe, it } from 'mocha';
 import { expect } from 'chai';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import Keypad from '../../app/components/keypad.component';
 import Key from '../../app/components/key.component';
@@ -13,7 +13,7 @@ describe('<Keypad />', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = mount(<Keypad keys={{ foo: 'bar' }} />);
+    wrapper = shallow(<Keypad keys={{ foo: 'bar' }} />);
   });
 
   it('should render without blowing up', () => {

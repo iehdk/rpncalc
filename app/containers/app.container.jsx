@@ -254,7 +254,7 @@ class AppContainer extends React.Component {
    * @property {Number} rows Number of rows in Display element.
    * @property {Number} cols Number of columns in Display and Prompt elements.
    * @property {Stack} stack Current stack.
-   * @property {Object} inputRef ref callback.
+   * @property {Object} promptRef ref callback.
    * @property {String} promptValue Value in the prompt.
    * @property {Object} _handleOnChange Event handler for OnChange.
    * @property {Object} _handleOnSubmit Event hndler for OnSubmit.
@@ -271,7 +271,7 @@ class AppContainer extends React.Component {
         />
         <Prompt
           cols={COLS}
-          inputRef={(inputElement) => { this.inputElement = inputElement; }}
+          promptRef={(inputElement) => { this.inputElement = inputElement; }}
           promptValue={this.state.promptValue}
           _handleOnChange={this._handleOnChange}
           _handleOnSubmit={this._handleOnSubmit}
