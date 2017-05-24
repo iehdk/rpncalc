@@ -204,11 +204,13 @@ describe('history.util -> History Class', () => {
     });
 
     describe('with fs error', () => {
-      it('should output errors to console', () => {
-        sandbox.stub(fs, 'writeFile').yields(new Error()); // FIXME stub Error
-        const consoleSpy = sandbox.spy(console, 'log');
+      it('should output the correct error to console', () => {
+        let error = new Error('write error');
+        sandbox.stub(fs, 'writeFile').yields(error);
+        const consoleStub = sinon.stub(console, 'log');
         history.save();
-        expect(consoleSpy).to.have.been.calledOnce;
+        consoleStub.restore();
+        expect(consoleStub).to.have.been.calledWith(error);
       });
     });
 
