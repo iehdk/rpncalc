@@ -14,6 +14,7 @@ class Keypad extends React.Component {
    * Method for rendering a Key component.
    * @param  {String} value Key value
    * @param  {Number} width Key width
+   * @param  {String} toolTip Description of key action - optional
    * @property {Object} label Key label
    * @property {Object} value Key value
    * @property {Object} width Width of the key
