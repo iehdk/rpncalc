@@ -47,7 +47,7 @@ class Display extends React.Component {
         <textarea
           readOnly
           id="display"
-          ref={displayRef => { this.displayRef = displayRef }}
+          ref={(displayRef) => { this.displayRef = displayRef; }}
           rows={this.props.rows}
           cols={this.props.cols}
           value={this.props.stack.render()}
