@@ -16,7 +16,7 @@ function KeyExp(props) {
     <button
       data-tip={tip}
       data-place="right"
-      className="key key-width-1"
+      className="key key-width-1 exp"
       type="button"
       value="exp"
       onClick={props._handleOnClick}

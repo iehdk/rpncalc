@@ -1,14 +1,7 @@
 /* eslint-disable no-unused-expressions */
 
-// import { afterEach, beforeEach, describe, it } from 'mocha';
-// import { expect } from 'chai';
-// import sinon from 'sinon';
-// import fs from 'fs';
-// import History from '../../app/utils/history.util';
-
 import { afterEach, beforeEach, describe, it } from 'mocha';
 import { expect } from 'chai';
-// import fs from 'fs';
 import sinon from 'sinon';
 import History from '../../app/utils/history.util';
 
@@ -205,7 +198,7 @@ describe('history.util -> History Class', () => {
 
     describe('with fs error', () => {
       it('should output the correct error to console', () => {
-        let error = new Error('write error');
+        const error = new Error('write error');
         sandbox.stub(fs, 'writeFile').yields(error);
         const consoleStub = sinon.stub(console, 'log');
         history.save();

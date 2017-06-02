@@ -24,6 +24,7 @@ class Keypad extends React.Component {
   _renderKey(value, width, toolTip) {
     return (
       <Key
+        className={value}
         toolTip={toolTip}
         value={value}
         label={this.props.keys[value]}
