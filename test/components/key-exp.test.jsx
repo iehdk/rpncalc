@@ -4,6 +4,7 @@ import React from 'react';
 import { beforeEach, describe, it } from 'mocha';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
+import sinon from 'sinon';
 
 import KeyExp from '../../app/components/key-exp.component';
 
@@ -32,5 +33,12 @@ describe('<KeyExp />', () => {
 
   it('should have props onclick event handler', () => {
     expect(wrapper.props()._handleOnClick).to.be.defined;
+  });
+
+  it('calls _handleOnClick when clicked', () => {
+    const spy = sinon.spy();
+    const wrapper2 = shallow(<KeyExp _handleOnClick={spy} />);
+    wrapper2.find('button').simulate('click');
+    expect(spy.calledOnce).to.be.true;
   });
 });
