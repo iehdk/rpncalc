@@ -52,6 +52,14 @@ const KEYS = {
 };
 
 /**
+ * Function that chops a given string, that is remove the last char.
+ * @return {String} Chopped string
+ */
+function _chopString(string) {
+  return string.substring(0, string.length - 1);
+}
+
+/**
  * Main application container for the RPN calculator.
  * @type {React.Component}
  * @extends {React.Component}
@@ -133,8 +141,28 @@ class AppContainer extends React.Component {
    * @param {Object} event Button OnClick event.
    */
   _handleOnClick(event) {
-    const value = event.currentTarget.value;
-    let newStack = new Stack(this.state.stack.ary);
+    const [newStack, newPromptValue] = this._calcAdaptor(
+      event.currentTarget.value,
+      this.state.stack,
+      this.state.promptValue,
+      this.state.keys,
+    );
+
+    this.setState({ stack: newStack });
+    this.setState({ promptValue: newPromptValue });
+  }
+
+  /**
+   * Adaptor for interpreting the given value and determine the calculator
+   * action required.
+   * @param  {String} value       Value of clicked button
+   * @param  {Stack} stack        Stack object.
+   * @param  {String} promptValue The value of the prompt.
+   * @param  {Hash} keys          Map of button keys and labels.
+   * @return {Array}              Array with newStack and newPromptValue.
+   */
+  _calcAdaptor(value, stack, promptValue, keys) {
+    let newStack = new Stack(stack.ary);
     let skipHistory = false;
     let newPromptValue;
 
@@ -152,9 +180,9 @@ class AppContainer extends React.Component {
         newStack.calcAdd();
         break;
       case 'subtract':
-        if (this.state.promptValue) {
-          if (this.state.promptValue.charAt(0) !== '-') {
-            newPromptValue = `-${this.state.promptValue}`;
+        if (promptValue) {
+          if (promptValue.charAt(0) !== '-') {
+            newPromptValue = `-${promptValue}`;
             skipHistory = true;
           }
         } else {
@@ -171,7 +199,7 @@ class AppContainer extends React.Component {
         newStack.calcSum();
         break;
       case 'del':
-        newPromptValue = this._chopPromptValue();
+        newPromptValue = _chopString(promptValue);
         break;
       case 'clear':
         newStack.empty();
@@ -183,36 +211,27 @@ class AppContainer extends React.Component {
         newStack.swap();
         break;
       case 'enter':
-        newStack.push(this.state.promptValue);
+        newStack.push(promptValue);
         break;
       case 'undo':
         newStack = this._undoHistory();
         skipHistory = true;
         break;
       default: {
-        const key = this.state.keys[value];
-        newPromptValue = this.state.promptValue + key;
+        const key = keys[value];
+        newPromptValue = promptValue + key;
         skipHistory = true;
         break;
       }
     }
 
-    this.setState({ stack: newStack });
-    this.setState({ promptValue: newPromptValue || '' });
+    newPromptValue = newPromptValue || '';
 
     if (!skipHistory) {
       this._addToHistory();
     }
-  }
 
-  /**
-   * Method that chops the promptValue, that is remove the last char.
-   * @return {String} Chopped promptValue
-   */
-  _chopPromptValue() {
-    let promptValue = this.state.promptValue;
-    promptValue = promptValue.substring(0, promptValue.length - 1);
-    return (promptValue);
+    return [newStack, newPromptValue];
   }
 
   /**
