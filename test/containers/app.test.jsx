@@ -92,32 +92,32 @@ describe('<App />', () => {
   });
 
   describe('_handleOnChange', () => {
-    const event = {target: {value: 'foo'}};
+    const event = { target: { value: 'foo' } };
 
     it('should set the state of promptValue', () => {
       const instance = wrapper.instance();
       instance._handleOnChange(event);
-      expect(instance.state.promptValue).to.eql('foo')
+      expect(instance.state.promptValue).to.eql('foo');
     });
   });
 
   describe('_handleOnSubmit', () => {
-    const event1 = {target: {value: '1234567890'}};
-    const event2 = {preventDefault: () => {}};
+    const event1 = { target: { value: '1234567890' } };
+    const event2 = { preventDefault: () => {} };
 
     it('should clear the state of promptValue', () => {
       const instance = wrapper.instance();
       instance._handleOnChange(event1);
-      expect(instance.state.promptValue).to.eql('1234567890')
+      expect(instance.state.promptValue).to.eql('1234567890');
       instance._handleOnSubmit(event2);
-      expect(instance.state.promptValue).to.eql('')
+      expect(instance.state.promptValue).to.eql('');
     });
 
     it('should update the state of stack', () => {
       const instance = wrapper.instance();
       instance._handleOnChange(event1);
       instance._handleOnSubmit(event2);
-      const ary = instance.state.stack.ary
+      const ary = instance.state.stack.ary;
       const last = ary[ary.length - 1];
       expect(last).to.eql(1234567890);
     });
@@ -131,7 +131,7 @@ describe('<App />', () => {
   });
 
   describe('_handleOnClick', () => {
-    const event = {currentTarget: {value: 'key4'}};
+    const event = { currentTarget: { value: 'key4' } };
 
     it('should update the state of stack');
 
@@ -188,14 +188,14 @@ describe('<App />', () => {
 
       describe('with positive promptValue', () => {
         it('it should negate the prompt value', () => {
-          const [newStack, newPromptValue] = wrapper.instance()._calcAdaptor('subtract', stack, '2', {});
+          const [, newPromptValue] = wrapper.instance()._calcAdaptor('subtract', stack, '2', {});
           expect(newPromptValue).to.eql('-2');
         });
       });
 
       describe('with negative promptValue', () => {
         it('it shouldnt change the prompt value', () => {
-          const [newStack, newPromptValue] = wrapper.instance()._calcAdaptor('subtract', stack, '-2', {});
+          const [, newPromptValue] = wrapper.instance()._calcAdaptor('subtract', stack, '-2', {});
           expect(newPromptValue).to.eql('-2');
         });
       });
@@ -244,17 +244,17 @@ describe('<App />', () => {
 
       describe('and empty promptValue', () => {
         it('shouldnt change the promptValue', () => {
-          const [newStack, newPromptValue] = wrapper.instance()._calcAdaptor('del', stack, '', {});
+          const [, newPromptValue] = wrapper.instance()._calcAdaptor('del', stack, '', {});
           expect(newPromptValue).to.eql('');
         });
-      })
+      });
 
       describe('and non-empty promptValue', () => {
         it('should chop the promptValue', () => {
-          const [newStack, newPromptValue] = wrapper.instance()._calcAdaptor('del', stack, '12', {});
+          const [, newPromptValue] = wrapper.instance()._calcAdaptor('del', stack, '12', {});
           expect(newPromptValue).to.eql('1');
         });
-      })
+      });
     });
 
     describe('with value clear', () => {
@@ -312,8 +312,8 @@ describe('<App />', () => {
       const stack = new Stack();
 
       it('should add the value to the promptValue', () => {
-          const [newStack, newPromptValue] = wrapper.instance()._calcAdaptor('foo', stack, '12', {'foo': 'bar'});
-          expect(newPromptValue).to.eql('12bar');
+        const [, newPromptValue] = wrapper.instance()._calcAdaptor('foo', stack, '12', { foo: 'bar' });
+        expect(newPromptValue).to.eql('12bar');
       });
     });
 
