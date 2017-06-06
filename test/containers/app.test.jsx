@@ -92,18 +92,54 @@ describe('<App />', () => {
   });
 
   describe('_handleOnChange', () => {
-    it('should set the state of promptValue');
+    const event = {target: {value: 'foo'}};
+
+    it('should set the state of promptValue', () => {
+      const instance = wrapper.instance();
+      instance._handleOnChange(event);
+      expect(instance.state.promptValue).to.eql('foo')
+    });
   });
 
   describe('_handleOnSubmit', () => {
-    it('should clear the state of promptValue');
-    it('should update the state of stack');
-    it('should add the stack to history');
+    const event1 = {target: {value: '1234567890'}};
+    const event2 = {preventDefault: () => {}};
+
+    it('should clear the state of promptValue', () => {
+      const instance = wrapper.instance();
+      instance._handleOnChange(event1);
+      expect(instance.state.promptValue).to.eql('1234567890')
+      instance._handleOnSubmit(event2);
+      expect(instance.state.promptValue).to.eql('')
+    });
+
+    it('should update the state of stack', () => {
+      const instance = wrapper.instance();
+      instance._handleOnChange(event1);
+      instance._handleOnSubmit(event2);
+      const ary = instance.state.stack.ary
+      const last = ary[ary.length - 1];
+      expect(last).to.eql(1234567890);
+    });
+
+    it('should add the stack to history', () => {
+      const instance = wrapper.instance();
+      const spy = sandbox.spy(instance, '_addToHistory');
+      instance._handleOnSubmit(event2);
+      expect(spy).to.have.been.calledOnce;
+    });
   });
 
   describe('_handleOnClick', () => {
+    const event = {currentTarget: {value: 'key4'}};
+
     it('should update the state of stack');
-    it('should update the state of promptValue');
+
+    it('should update the state of promptValue', () => {
+      const instance = wrapper.instance();
+      instance._handleOnClick(event);
+      expect(instance.state.promptValue).to.eql('4');
+    });
   });
 
   describe('_calcAdaptor', () => {
