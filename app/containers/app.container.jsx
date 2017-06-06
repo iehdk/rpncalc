@@ -185,9 +185,11 @@ class AppContainer extends React.Component {
           if (promptValue.charAt(0) !== '-') {
             newPromptValue = `-${promptValue}`;
             skipHistory = true;
+          } else {
+            newPromptValue = promptValue;
           }
         } else {
-          stack.calcSubstract();
+          stack.calcSubtract();
         }
         break;
       case 'multiply':
@@ -215,7 +217,7 @@ class AppContainer extends React.Component {
         stack.push(promptValue);
         break;
       case 'undo':
-        newStack = this._undoHistory();
+        stack = this._undoHistory();
         skipHistory = true;
         break;
       default: {

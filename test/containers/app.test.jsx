@@ -62,67 +62,231 @@ describe('<App />', () => {
         expect(wrapper.state().keys).to.be.instanceOf(Object);
       });
     });
+  });
 
-    describe('componentDidMount', () => {
-      const mountSpy = sandbox.spy(App.prototype, 'componentDidMount');
-      // const focusSpy = sandbox.spy(App.prototype, 'inputElement');
+  describe('componentDidMount', () => {
+    const mountSpy = sandbox.spy(App.prototype, 'componentDidMount');
+    // const focusSpy = sandbox.spy(App.prototype, 'inputElement');
 
-      it('calls componentDidMount', () => {
-        expect(mountSpy).to.have.been.calledOnce;
+    it('calls componentDidMount', () => {
+      expect(mountSpy).to.have.been.calledOnce;
+    });
+
+    it('should focus on inputElement');
+    // it('should focus on inputElement', () => {
+    //   expect(focusSpy).to.have.been.calledOnce;
+    // });
+  });
+
+  describe('componentDidUpdate', () => {
+    // const updateSpy = sandbox.spy(App.prototype, 'componentDidUpdate');
+
+    it('calls componentDidUpdate');
+    // it('calls componentDidUpdate', () => {
+    //   wrapper.find('form').simulate('submit');
+    //   expect(updateSpy).to.have.been.calledOnce;
+    // });
+
+    it('should focus on inputElement');
+    it('should save history');
+  });
+
+  describe('_handleOnChange', () => {
+    it('should set the state of promptValue');
+  });
+
+  describe('_handleOnSubmit', () => {
+    it('should clear the state of promptValue');
+    it('should update the state of stack');
+    it('should add the stack to history');
+  });
+
+  describe('_handleOnClick', () => {
+    it('should update the state of stack');
+    it('should update the state of promptValue');
+  });
+
+  describe('_calcAdaptor', () => {
+    describe('with value root', () => {
+      const stack = new Stack();
+
+      it('should call calcRoot', () => {
+        const rootSpy = sandbox.spy(stack, 'calcRoot');
+        wrapper.instance()._calcAdaptor('root', stack, 'bar', {});
+        expect(rootSpy).to.have.been.calledOnce;
       });
-
-      it('should focus on inputElement');
-      // it('should focus on inputElement', () => {
-      //   expect(focusSpy).to.have.been.calledOnce;
-      // });
     });
 
-    describe('componentDidUpdate', () => {
-      // const updateSpy = sandbox.spy(App.prototype, 'componentDidUpdate');
+    describe('with value exp', () => {
+      const stack = new Stack();
 
-      it('calls componentDidUpdate');
-      // it('calls componentDidUpdate', () => {
-      //   wrapper.find('form').simulate('submit');
-      //   expect(updateSpy).to.have.been.calledOnce;
-      // });
-
-      it('should focus on inputElement');
-      it('should save history');
+      it('should call calcExp', () => {
+        const rootSpy = sandbox.spy(stack, 'calcExp');
+        wrapper.instance()._calcAdaptor('exp', stack, 'bar', {});
+        expect(rootSpy).to.have.been.calledOnce;
+      });
     });
 
-    describe('_handleOnChange', () => {
-      it('should set the state of promptValue');
+    describe('with value reciprocal', () => {
+      const stack = new Stack();
+
+      it('should call calcReciprocal', () => {
+        const rootSpy = sandbox.spy(stack, 'calcReciprocal');
+        wrapper.instance()._calcAdaptor('reciprocal', stack, 'bar', {});
+        expect(rootSpy).to.have.been.calledOnce;
+      });
     });
 
-    describe('_handleOnSubmit', () => {
-      it('should clear the state of promptValue');
-      it('should update the state of stack');
-      it('should add the stack to history');
+    describe('with value add', () => {
+      const stack = new Stack();
+
+      it('should call calcAdd', () => {
+        const rootSpy = sandbox.spy(stack, 'calcAdd');
+        wrapper.instance()._calcAdaptor('add', stack, 'bar', {});
+        expect(rootSpy).to.have.been.calledOnce;
+      });
     });
 
-    describe('_handleOnClick', () => {
-      it('should update the state of stack');
-      it('should update the state of promptValue');
-    });
+    describe('with value subtract', () => {
+      const stack = new Stack();
 
-    describe('_calcAdaptor', () => {
-      describe('with value root', () => {
-        const stack = new Stack();
-
-        it('should call calcRoot', () => {
-          const rootSpy = sandbox.spy(stack, 'calcRoot');
-          wrapper.instance()._calcAdaptor('root', stack, 'bar', {});
-          expect(rootSpy).to.have.been.calledOnce;
+      describe('with positive promptValue', () => {
+        it('it should negate the prompt value', () => {
+          const [newStack, newPromptValue] = wrapper.instance()._calcAdaptor('subtract', stack, '2', {});
+          expect(newPromptValue).to.eql('-2');
         });
       });
 
-      describe('skip history flag set', () => {
-        it('should not save history');
+      describe('with negative promptValue', () => {
+        it('it shouldnt change the prompt value', () => {
+          const [newStack, newPromptValue] = wrapper.instance()._calcAdaptor('subtract', stack, '-2', {});
+          expect(newPromptValue).to.eql('-2');
+        });
       });
 
-      describe('skip history flag unset', () => {
-        it('should save history');
+      describe('without promptValue', () => {
+        it('should call calcSubtract', () => {
+          const rootSpy = sandbox.spy(stack, 'calcSubtract');
+          wrapper.instance()._calcAdaptor('subtract', stack, '', {});
+          expect(rootSpy).to.have.been.calledOnce;
+        });
       });
+    });
+
+    describe('with value multiply', () => {
+      const stack = new Stack();
+
+      it('should call calcMultiply', () => {
+        const rootSpy = sandbox.spy(stack, 'calcMultiply');
+        wrapper.instance()._calcAdaptor('multiply', stack, 'bar', {});
+        expect(rootSpy).to.have.been.calledOnce;
+      });
+    });
+
+    describe('with value divide', () => {
+      const stack = new Stack();
+
+      it('should call calcDivide', () => {
+        const rootSpy = sandbox.spy(stack, 'calcDivide');
+        wrapper.instance()._calcAdaptor('divide', stack, 'bar', {});
+        expect(rootSpy).to.have.been.calledOnce;
+      });
+    });
+
+    describe('with value sum', () => {
+      const stack = new Stack();
+
+      it('should call calcSum', () => {
+        const rootSpy = sandbox.spy(stack, 'calcSum');
+        wrapper.instance()._calcAdaptor('sum', stack, 'bar', {});
+        expect(rootSpy).to.have.been.calledOnce;
+      });
+    });
+
+    describe('with value del', () => {
+      const stack = new Stack();
+
+      describe('and empty promptValue', () => {
+        it('shouldnt change the promptValue', () => {
+          const [newStack, newPromptValue] = wrapper.instance()._calcAdaptor('del', stack, '', {});
+          expect(newPromptValue).to.eql('');
+        });
+      })
+
+      describe('and non-empty promptValue', () => {
+        it('should chop the promptValue', () => {
+          const [newStack, newPromptValue] = wrapper.instance()._calcAdaptor('del', stack, '12', {});
+          expect(newPromptValue).to.eql('1');
+        });
+      })
+    });
+
+    describe('with value clear', () => {
+      const stack = new Stack();
+
+      it('should call empty', () => {
+        const rootSpy = sandbox.spy(stack, 'empty');
+        wrapper.instance()._calcAdaptor('clear', stack, 'bar', {});
+        expect(rootSpy).to.have.been.calledOnce;
+      });
+    });
+
+    describe('with value pop', () => {
+      const stack = new Stack();
+
+      it('should call pop', () => {
+        const rootSpy = sandbox.spy(stack, 'pop');
+        wrapper.instance()._calcAdaptor('pop', stack, 'bar', {});
+        expect(rootSpy).to.have.been.calledOnce;
+      });
+    });
+
+    describe('with value swap', () => {
+      const stack = new Stack();
+
+      it('should call swap', () => {
+        const rootSpy = sandbox.spy(stack, 'swap');
+        wrapper.instance()._calcAdaptor('swap', stack, 'bar', {});
+        expect(rootSpy).to.have.been.calledOnce;
+      });
+    });
+
+    describe('with value enter', () => {
+      const stack = new Stack();
+
+      it('should call push', () => {
+        const rootSpy = sandbox.spy(stack, 'push');
+        wrapper.instance()._calcAdaptor('enter', stack, 'bar', {});
+        expect(rootSpy).to.have.been.calledOnce;
+      });
+    });
+
+    describe('with value undo', () => {
+      const stack = new Stack();
+
+      it('should call _undoHistory', () => {
+        const instance = wrapper.instance();
+        const spy = sandbox.spy(instance, '_undoHistory');
+        instance._calcAdaptor('undo', stack, 'bar', {});
+        expect(spy).to.have.been.calledOnce;
+      });
+    });
+
+    describe('with unmatched value', () => {
+      const stack = new Stack();
+
+      it('should add the value to the promptValue', () => {
+          const [newStack, newPromptValue] = wrapper.instance()._calcAdaptor('foo', stack, '12', {'foo': 'bar'});
+          expect(newPromptValue).to.eql('12bar');
+      });
+    });
+
+    describe('skip history flag set', () => {
+      it('should not save history');
+    });
+
+    describe('skip history flag unset', () => {
+      it('should save history');
     });
   });
 });
