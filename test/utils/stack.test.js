@@ -130,25 +130,25 @@ describe('stack.util -> Stack Class', () => {
     });
   });
 
-  describe('calcSubstract', () => {
+  describe('calcSubtract', () => {
     describe('with stack size less than two', () => {
       const stack = new Stack([1]);
       it('shouldn\'t change the stack', () => {
-        expect(stack.calcSubstract().ary).to.eql([1]);
+        expect(stack.calcSubtract().ary).to.eql([1]);
       });
     });
 
     describe('with stack size of two', () => {
       const stack = new Stack([2, 3]);
-      it('should replace the last two values with the substraction of these', () => {
-        expect(stack.calcSubstract().ary).to.eql([-1]);
+      it('should replace the last two values with the subtraction of these', () => {
+        expect(stack.calcSubtract().ary).to.eql([-1]);
       });
     });
 
     describe('with stack size greater than two', () => {
       const stack = new Stack([1, 2, 3]);
-      it('should replace the last two values with the substraction of these', () => {
-        expect(stack.calcSubstract().ary).to.eql([1, -1]);
+      it('should replace the last two values with the subtraction of these', () => {
+        expect(stack.calcSubtract().ary).to.eql([1, -1]);
       });
     });
   });
@@ -306,7 +306,7 @@ describe('stack.util -> Stack Class', () => {
 
     describe('with value -', () => {
       const stack = new Stack([]);
-      const spy = sinon.spy(stack, 'calcSubstract');
+      const spy = sinon.spy(stack, 'calcSubtract');
       stack.push('-');
       it('should call calcSubstrackt method once', () => {
         expect(spy).to.have.been.calledOnce;

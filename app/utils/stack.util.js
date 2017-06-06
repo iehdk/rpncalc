@@ -119,7 +119,7 @@ class Stack {
    * by the result.
    * @return {this}
    */
-  calcSubstract() {
+  calcSubtract() {
     if (this.ary.length < 2) {
       return this;
     }
@@ -239,7 +239,7 @@ class Stack {
         this.calcAdd();
         break;
       case '-':
-        this.calcSubstract();
+        this.calcSubtract();
         break;
       case '*':
         this.calcMultiply();
