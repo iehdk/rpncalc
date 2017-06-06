@@ -10,7 +10,7 @@ import App from '../../app/containers/app.container';
 import Prompt from '../../app/components/prompt.component';
 import Display from '../../app/components/display.component';
 import Keypad from '../../app/components/keypad.component';
-// import Stack from '../../app/utils/stack.util';
+import Stack from '../../app/utils/stack.util';
 
 describe('<App />', () => {
   const sandbox = sinon.sandbox.create();
@@ -41,12 +41,6 @@ describe('<App />', () => {
   });
 
   describe('constructor', () => {
-    describe('props', () => {
-      it('should have 0 props', () => {
-        expect(Object.keys(wrapper.props()).length).to.eql(0);
-      });
-    });
-
     describe('state', () => {
       it('should have 4 states', () => {
         expect(Object.keys(wrapper.state()).length).to.eql(4);
@@ -107,18 +101,28 @@ describe('<App />', () => {
     });
 
     describe('_handleOnClick', () => {
-      describe('with value root', () => {
-        // const rootSpy = sandbox.spy(Stack.prototype, 'calcRoot');
-
-        it('should call calcRoot');
-        // it('should call calcRoot', () => {
-        //   wrapper.find('.root').simulate('click');
-        //   expect(rootSpy).to.have.been.calledOnce;
-        // });
-      });
-
       it('should update the state of stack');
       it('should update the state of promptValue');
+    });
+
+    describe('_calcAdaptor', () => {
+      describe('with value root', () => {
+        const stack = new Stack();
+
+        it('should call calcRoot', () => {
+          const rootSpy = sandbox.spy(stack, 'calcRoot');
+          wrapper.instance()._calcAdaptor('root', stack, 'bar', {});
+          expect(rootSpy).to.have.been.calledOnce;
+        });
+      });
+
+      describe('skip history flag set', () => {
+        it('should not save history');
+      });
+
+      describe('skip history flag unset', () => {
+        it('should save history');
+      });
     });
   });
 });

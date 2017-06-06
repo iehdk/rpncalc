@@ -141,9 +141,11 @@ class AppContainer extends React.Component {
    * @param {Object} event Button OnClick event.
    */
   _handleOnClick(event) {
+    let stack = new Stack(this.state.stack.ary);
+
     const [newStack, newPromptValue] = this._calcAdaptor(
       event.currentTarget.value,
-      this.state.stack,
+      stack,
       this.state.promptValue,
       this.state.keys,
     );
@@ -162,22 +164,21 @@ class AppContainer extends React.Component {
    * @return {Array}              Array with newStack and newPromptValue.
    */
   _calcAdaptor(value, stack, promptValue, keys) {
-    let newStack = new Stack(stack.ary);
     let skipHistory = false;
     let newPromptValue;
 
     switch (value) {
       case 'root':
-        newStack.calcRoot();
+        stack.calcRoot();
         break;
       case 'exp':
-        newStack.calcExp();
+        stack.calcExp();
         break;
       case 'reciprocal':
-        newStack.calcReciprocal();
+        stack.calcReciprocal();
         break;
       case 'add':
-        newStack.calcAdd();
+        stack.calcAdd();
         break;
       case 'subtract':
         if (promptValue) {
@@ -186,32 +187,32 @@ class AppContainer extends React.Component {
             skipHistory = true;
           }
         } else {
-          newStack.calcSubstract();
+          stack.calcSubstract();
         }
         break;
       case 'multiply':
-        newStack.calcMultiply();
+        stack.calcMultiply();
         break;
       case 'divide':
-        newStack.calcDivide();
+        stack.calcDivide();
         break;
       case 'sum':
-        newStack.calcSum();
+        stack.calcSum();
         break;
       case 'del':
         newPromptValue = _chopString(promptValue);
         break;
       case 'clear':
-        newStack.empty();
+        stack.empty();
         break;
       case 'pop':
-        newStack.pop();
+        stack.pop();
         break;
       case 'swap':
-        newStack.swap();
+        stack.swap();
         break;
       case 'enter':
-        newStack.push(promptValue);
+        stack.push(promptValue);
         break;
       case 'undo':
         newStack = this._undoHistory();
@@ -231,7 +232,7 @@ class AppContainer extends React.Component {
       this._addToHistory();
     }
 
-    return [newStack, newPromptValue];
+    return [stack, newPromptValue];
   }
 
   /**
