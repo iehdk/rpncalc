@@ -31,11 +31,8 @@ function createWindow() {
 
   mainWindow.setResizable(true);
 
-  // FIXME enable dettools if dev env and set resizable true
-
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
-
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
