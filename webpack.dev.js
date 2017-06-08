@@ -1,17 +1,25 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const url = 'http://localhost:8080/dist/';
 
 const config = {
   entry: './app/app.jsx',
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: '../index.html',
+      template: 'index.ejs',
+    })
+  ],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'app.bundle.js',
-    publicPath: 'http://localhost:8080/dist/',
+    publicPath: url,
   },
   devtool: '#eval-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    publicPath: 'http://localhost:8080/dist/',
+    publicPath: url,
   },
   module: {
     rules: [
