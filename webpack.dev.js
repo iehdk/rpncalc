@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const url = 'http://localhost:8080/dist/';
 
 const config = {
@@ -8,7 +9,7 @@ const config = {
     new HtmlWebpackPlugin({
       filename: '../index.html',
       template: 'index.ejs',
-    })
+    }),
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),

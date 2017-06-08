@@ -141,7 +141,7 @@ class AppContainer extends React.Component {
    * @param {Object} event Button OnClick event.
    */
   _handleOnClick(event) {
-    let stack = new Stack(this.state.stack.ary);
+    const stack = new Stack(this.state.stack.ary);
 
     const [newStack, newPromptValue] = this._calcAdaptor(
       event.currentTarget.value,
